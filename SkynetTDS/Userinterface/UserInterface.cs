@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SkynetTDS
+namespace SkynetTDS.Userinterface
 {
-    public partial class Form1 : Form
+    public partial class UserInterface : Form
     {
-        public Form1()
+        public UserInterface()
         {
             InitializeComponent();
         }
