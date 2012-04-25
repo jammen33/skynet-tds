@@ -75,7 +75,11 @@
     <Compile Include="Vision\FoeImageProcessor.cs" />
     <Compile Include="Vision\FriendFoeImageProcessor.cs" />
     <Compile Include="Vision\IImageProcessor.cs" />
+    <Compile Include="Vision\IImageProcessorCreator.cs" />
+    <Compile Include="Vision\ImageDeviceArgs.cs" />
+    <Compile Include="Vision\ImageProcessorCreator.cs" />
     <Compile Include="Vision\IVisionDevice.cs" />
+    <Compile Include="Vision\VisionDevice.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
