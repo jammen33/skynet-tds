@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="0e62d89d-cca1-4bae-96c3-3858066bbf9f" name="SkynetUseCase" linkedPackageId="797c0a21-34b7-4001-9518-f82f4159b57a" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="0bbd322c-c8d0-4116-b29e-3d10122874d0">
+      <profileInstance Id="7dd28162-1390-4b83-9b20-7bb285224c44" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="771a7426-0f16-4cb4-9d46-c9f57b818896">
+      <profileInstance Id="da0fd86f-b571-4d1c-8f05-9fa0b5320bad" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="78c02509-b9ed-49de-a4aa-2856aa793cae" name="User" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="368a736c-926a-4a28-bfc4-4b23860ca21a" />
+        <targetEnds>
+          <association Id="d0de76e2-6dfa-43b3-9d61-68b8f807bfde" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Select Competition" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="a5c12c75-2f5e-4e6f-92a7-e75a24100a19" LastKnownName="Select Competition" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0b3fa3c9-0feb-4008-90a2-ed9fd2617d80" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="485bfd31-1c55-4eb7-b79d-a05392009cf8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a4188cc3-d416-48d3-b5a7-2e0b128e7665" name="Select Competition" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="92cd1901-342a-493a-a17b-d5c393b7db53" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="323b5bf0-1374-497f-9f51-59e5b0b9cbdd" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="6d1e1ce6-71ca-479d-a222-82929bff9a90" name="Image System" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="a6e45b8d-be25-43ca-bed3-0e851b0708ea" />
+        <targetEnds>
+          <association Id="fde2d7cb-9a26-451a-88f3-a0ad4bdbb1c4" isDerived="false" sourceEndRoleName="Image System" targetEndRoleName="Process Image" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="e7ca1812-831b-4055-9e88-7d4bebe0a1a2" LastKnownName="Process Image" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="71c14736-f315-4ee4-9173-916cd0dd37d2" name="Image System" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="8d559345-fe09-4597-a459-c0f8f40c6d35" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c0088200-5d5c-4e8a-96c0-b30c4f1dfabc" name="Process Image" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="a72bbbe3-e0df-4de2-bf77-1dcf3e030c35" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="db512fd5-93ec-479c-ab1f-5599a6a4484f" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="52cd6581-d334-46b5-b9f2-54b6b22375e3" name="Missile System" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c0421ebc-a368-4907-8208-ba70de9d932b" />
+        <targetEnds>
+          <association Id="86fd25f3-95bd-4d6c-9905-8acb598b620b" isDerived="false" sourceEndRoleName="Missile System" targetEndRoleName="Fire At Target" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="73b0b6cb-e4a2-4825-9683-d95e19caa038" LastKnownName="Fire At Target" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d40baf09-ee6f-478a-8b82-9346de93ad6e" name="Missile System" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="fbbeb398-4502-4346-9776-06ce8045143d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6148ffe5-79d6-48c2-bf04-3170e9e89a0d" name="Fire At Target" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b4280059-a60f-4e62-87ce-ce084808b1d8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="1c1b4450-116d-46e4-9c9e-8b90fc7b5d37" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="6e4ed667-59a2-4ea6-abb5-136f229f8c9a" name="Moving Target" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="7517cf3b-d3d7-41ff-9534-641bdf40e69d" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="2a0b0438-b548-4b95-a624-c45521d3f96a" name="Friend or Foe" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8c74ac59-ad73-49ff-a27b-2b5a3f1f4223" />
+        <additions>
+          <include Id="f108d0ec-7067-415d-84c2-4ec594bceffe">
+            <useCaseMoniker Id="e7ca1812-831b-4055-9e88-7d4bebe0a1a2" LastKnownName="Process Image" />
+            <elementDefinition Id="4044241a-77aa-4c70-b6cd-9e60367850ed" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="eb1fa361-4459-4073-8e23-e4664e4b0ad2" name="Depth Perception" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5b486ada-0d32-45c6-b8a0-303ce8ca5a81" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="a2d516c1-06d8-4045-bc45-4db766328bbe" name="Time Trial" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="eaa8af92-4a44-46b9-82f3-744952bb7fd6" />
+        <additions>
+          <include Id="d07c0e4c-dcdb-4ab5-bc16-504302de473a">
+            <useCaseMoniker Id="e7ca1812-831b-4055-9e88-7d4bebe0a1a2" LastKnownName="Process Image" />
+            <elementDefinition Id="d5785052-a455-4457-b01c-9ab331c7814e" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="a5c12c75-2f5e-4e6f-92a7-e75a24100a19" name="Select Competition" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="068be89c-9873-401c-b06a-c5d81dd5d9b0" />
+        <targetEnds>
+          <association Id="616c37dd-1851-4755-ba1e-37cc547ebfed" isDerived="false" sourceEndRoleName="Select Competition" targetEndRoleName="Time Trial" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="a2d516c1-06d8-4045-bc45-4db766328bbe" LastKnownName="Time Trial" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="01f877c2-6f84-4c76-b561-f9109227a5ad" name="Select Competition" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="eb5fe2e3-f8db-4ef4-87af-ebe1da7e17a0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ef398446-c913-4ce9-a45c-47f645ff453c" name="Time Trial" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="a9e5f3ef-52f2-44c3-848e-ee177a9561db" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="79e5f116-5c93-40af-962f-cc9ad6333ad5" />
+          </association>
+          <association Id="d7792a9f-5e5a-499d-8993-01a669b37200" isDerived="false" sourceEndRoleName="Select Competition" targetEndRoleName="Foe only" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="b7e99a93-cda3-4e17-8de0-31467bf1d0f3" LastKnownName="Foe only" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5932aa7a-a6f6-45d3-b02a-a5895e92d373" name="Select Competition" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f118f1da-f20e-441a-bfc7-754b770004fb" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="95735d69-1e60-4090-9556-64d7f19fa92b" name="Foe only" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="633c08fa-0fde-4c14-ac4e-d80df883c1e7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="c49706ad-3b8d-45f8-a968-6781e629bd29" />
+          </association>
+          <association Id="a6e26726-7ba0-4be4-b028-afcfe662c373" isDerived="false" sourceEndRoleName="Select Competition" targetEndRoleName="Friend or Foe" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="2a0b0438-b548-4b95-a624-c45521d3f96a" LastKnownName="Friend or Foe" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d3dc0321-b3c4-4496-abe9-fb9d33cc0487" name="Select Competition" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a671acf8-9796-4675-9832-51c2ae63e827" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="15c3a841-c998-4891-bba5-2522e7b6f4e8" name="Friend or Foe" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="605bbcc9-4900-4c39-b73e-c11cee0b0ae0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="5eacc753-4262-4a4a-8bfc-e15591c83bc9" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="b7e99a93-cda3-4e17-8de0-31467bf1d0f3" name="Foe only" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="190e21db-0f49-44df-9555-210486f22413" />
+        <extendedCases>
+          <extend Id="19e42044-ce28-4088-a008-ce5650397711">
+            <useCaseMoniker Id="eb1fa361-4459-4073-8e23-e4664e4b0ad2" LastKnownName="Depth Perception" />
+            <elementDefinition Id="694be80b-fa9d-4d9a-8270-0febdee6928c" />
+          </extend>
+          <extend Id="addf7e74-47cd-4d2a-a9c1-b11f2cfae272">
+            <useCaseMoniker Id="6e4ed667-59a2-4ea6-abb5-136f229f8c9a" LastKnownName="Moving Target" />
+            <elementDefinition Id="548729d2-6069-4a53-9adf-6ce889c08b19" />
+          </extend>
+        </extendedCases>
+        <additions>
+          <include Id="9582ccfe-f16a-40d0-8275-1d8842b07a9b">
+            <useCaseMoniker Id="e7ca1812-831b-4055-9e88-7d4bebe0a1a2" LastKnownName="Process Image" />
+            <elementDefinition Id="ead44d25-7dee-4fe8-b364-af8c9c07b911" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="e7ca1812-831b-4055-9e88-7d4bebe0a1a2" name="Process Image" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="fe8cedc3-a94f-41be-8326-f4b5ed2964b6" />
+        <additions>
+          <include Id="04b0f140-6cdc-4cda-a983-5437b55acf0f">
+            <useCaseMoniker Id="73b0b6cb-e4a2-4825-9683-d95e19caa038" LastKnownName="Fire At Target" />
+            <elementDefinition Id="21639e08-19eb-4a68-9ada-8ef3698bf3a5" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="73b0b6cb-e4a2-4825-9683-d95e19caa038" name="Fire At Target" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ddd4c47d-4620-4643-aef4-12e6880d90a4" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="e9048c92-930c-4157-ac34-97b4044d6a9a" name="Capture Image" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9a9e5162-24fa-4a32-a906-34480981ed0d" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="1b2b3d33-52fc-4f96-b47a-2b1be8c62d84" name="Missile System" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="19bcafc7-640b-459f-92ac-c25a488f4527" />
+        <targetEnds>
+          <association Id="c44b2db2-316c-4d50-aae5-52c885d55dea" isDerived="false" sourceEndRoleName="Missile System" targetEndRoleName="Accept Coords" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="0ca474e8-f0cf-483b-8820-be218f992fae" LastKnownName="Accept Coords" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="26a2dba5-88ad-4dd9-9bbf-8b819f6ee6c8" name="Missile System" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="49a0b295-0004-4ced-a48c-57f17e25f89b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d9a1b241-4aa9-4c6d-a25b-bea20da5a223" name="Accept Coords" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="34fc616a-1f38-45e8-ba4e-a700224e0029" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="0a9a24b5-6463-4ca9-b201-dfad7f903bed" />
+          </association>
+          <association Id="77be490c-873c-4624-9d4e-5ee389287c48" isDerived="false" sourceEndRoleName="Missile System" targetEndRoleName="Move to Coords" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="3f0778f4-fa12-4039-83fc-9fd98e3583ad" LastKnownName="Move to Coords" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="acde708e-d4d4-4e19-b35c-e6e65815481e" name="Missile System" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="67970052-6dff-4240-ac8e-fc7dc268790e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fe33ec15-88c8-42ee-9556-50301009dcb8" name="Move to Coords" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="dbaec0d4-a711-4e99-a99a-6f3c7c6e5ca8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="00dc3187-c890-4599-975a-61f7d0da001a" />
+          </association>
+          <association Id="7e6a08b0-1390-4528-95fa-1aa48d487cad" isDerived="false" sourceEndRoleName="Missile System" targetEndRoleName="Fire Missile" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="a789e636-cb24-437d-9291-6ce7899044ec" LastKnownName="Fire Missile" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="68939acc-3825-47d6-8c21-f5130bb597ea" name="Missile System" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b0a9fee9-6d67-45f9-95e9-1fdcf322c245" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0443bd78-fc6c-4491-bd5a-5f54d47d8933" name="Fire Missile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="88ad51ea-7295-4060-b1f6-ced89a1f2536" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e6b868fb-016c-4f5a-bab3-1c51a57c46bb" />
+          </association>
+          <association Id="f882dc53-5cd2-4d43-b22c-55b0742b7a35" isDerived="false" sourceEndRoleName="Missile System" targetEndRoleName="Send OK" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="de33095c-cabf-4b56-8b1c-8451326f6438" LastKnownName="Send OK" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5a8cbc0e-7241-442a-a2a5-ab48552f1784" name="Missile System" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0f4214cc-10ef-452a-89a6-d01b60e82a47" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2f8cbcb3-a44c-4392-b741-cab75f9fc90f" name="Send OK" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="5c486e6c-ed39-4825-b6bc-72cbbd7fb56a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="06191d7d-28a4-450f-8c3b-b8ddeaa7ed9a" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="2de2cfb6-9534-482b-b04e-bd9b9eb310e9" name="Image System" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="381369c6-080a-45de-af36-3eb6c702025c" />
+        <targetEnds>
+          <association Id="6e8ac3cd-41f4-4f50-83be-3b76ef4ec473" isDerived="false" sourceEndRoleName="Image System" targetEndRoleName="UseCase1" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="e9048c92-930c-4157-ac34-97b4044d6a9a" LastKnownName="Capture Image" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="84a06d96-67bf-4a88-864e-d133cb757bfb" name="Image System" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="16b6dcc8-76af-495d-8b32-d2a2819d6c51" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="12979b53-d658-4f85-9916-2adfdcb58cd3" name="UseCase1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="91fe388c-06c1-493d-8296-d8dc53edd22c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="441cecbc-5d1b-4e73-9d68-a585afad17e7" />
+          </association>
+          <association Id="765e5a2f-7732-481a-a25d-24d3682efc02" isDerived="false" sourceEndRoleName="Image System" targetEndRoleName="Locate Targets" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="6cc593ab-fc72-4d38-ab4f-7a82267c5904" LastKnownName="Locate Targets" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="10337e6f-57c4-4d28-8e2e-c5ec624ea915" name="Image System" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="000eb682-391a-4ce3-b7a3-ad93c4e08d39" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8936fae3-26d6-42d4-99c6-ca0fddb62364" name="Locate Targets" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="3d3a0d51-586f-4d2a-ab2c-e0f80ffcf2e8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="edc02f8d-a708-4191-89e0-eb16b8eeece3" />
+          </association>
+          <association Id="0f08cd4b-6535-445d-aa62-0db633724595" isDerived="false" sourceEndRoleName="Image System" targetEndRoleName="Wait for OK from missile System" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="b653dae1-a737-4ac2-8aed-2e23e1b4d5cd" LastKnownName="Wait for OK from missile System" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b5bfd487-4f2d-4bdd-8ee0-7a8d54a97400" name="Image System" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f73fcce5-edc0-4dfb-b3f3-5d83d406a467" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0b2f5b35-a881-4501-9e63-b9ba2895112d" name="Wait for OK from missile System" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="7a37f70c-c312-4186-8b51-8a94562a2ee1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="9d47ad74-ecec-4e89-9b24-6868d99d8356" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="6cc593ab-fc72-4d38-ab4f-7a82267c5904" name="Locate Targets" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c672123a-a10f-4047-9a01-8f37573a157f" />
+        <additions>
+          <include Id="da3358bc-435f-46dd-be23-56c5a037cea7">
+            <useCaseMoniker Id="e1f6a4d4-26c8-466a-bbe4-61bc6f3f9b5f" LastKnownName="Find Friend or Foe" />
+            <elementDefinition Id="21713c83-f49e-4676-b5c9-c7e75315420a" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="e1f6a4d4-26c8-466a-bbe4-61bc6f3f9b5f" name="Find Friend or Foe" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8995e143-421f-4b42-89be-81a0e3b70871" />
+        <additions>
+          <include Id="041a2702-7840-4729-aa89-cbc5c17a66df">
+            <useCaseMoniker Id="c9a9b2ec-7012-48be-aa20-0ae347716f85" LastKnownName="Get Coords of Target" />
+            <elementDefinition Id="e2bcbd17-3197-434a-b9e2-e96fdaa4b4fa" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="c9a9b2ec-7012-48be-aa20-0ae347716f85" name="Get Coords of Target" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9ac458ef-816a-4d6a-8bee-2191938c9162" />
+        <additions>
+          <include Id="621f0377-0a0c-454e-a4eb-ec5881355eec">
+            <useCaseMoniker Id="16abea0a-4f0c-4667-a06e-59be5b4099ab" LastKnownName="Send coords to Missile System" />
+            <elementDefinition Id="d258fea0-aa33-47e5-9b9a-7d32a2991482" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="b653dae1-a737-4ac2-8aed-2e23e1b4d5cd" name="Wait for OK from missile System" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f8727e58-e777-470d-8fae-e80d43ec2aad" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="16abea0a-4f0c-4667-a06e-59be5b4099ab" name="Send coords to Missile System" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f1b72243-e8f1-4596-a481-22a7901a6e49" />
+        <additions>
+          <include Id="d5ced4b3-4045-447a-8c64-6f4839100473">
+            <useCaseMoniker Id="0ca474e8-f0cf-483b-8820-be218f992fae" LastKnownName="Accept Coords" />
+            <elementDefinition Id="48757144-aa91-428d-b11b-41242dfe9f5a" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="3f0778f4-fa12-4039-83fc-9fd98e3583ad" name="Move to Coords" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5a0fbaeb-a730-418e-80d1-e4f2fecb8545" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="a789e636-cb24-437d-9291-6ce7899044ec" name="Fire Missile" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f1e25c73-805c-4381-a40c-13216c12dece" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="0ca474e8-f0cf-483b-8820-be218f992fae" name="Accept Coords" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="4336f8c0-e3cd-41c8-bbab-55ca27dc02f7" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="de33095c-cabf-4b56-8b1c-8451326f6438" name="Send OK" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="3ce3e0ea-2238-4bea-b05c-47931f3de533" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="797c0a21-34b7-4001-9518-f82f4159b57a" name="SkynetTDSModeling">
+    <elementDefinition Id="75f5cb4e-ed53-4e92-855e-82390244055e" />
+  </package>
+</useCaseModelRoot>
