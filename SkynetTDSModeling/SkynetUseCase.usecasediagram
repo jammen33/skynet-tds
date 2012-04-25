@@ -169,6 +169,12 @@
             <elementDefinition Id="5eacc753-4262-4a4a-8bfc-e15591c83bc9" />
           </association>
         </targetEnds>
+        <additions>
+          <include Id="d8b9baff-b0a4-479f-bb31-20b6cf4267e1">
+            <useCaseMoniker Id="3d5988c4-c17e-4f73-8b78-cdcc9cc8b1bc" LastKnownName="Start Timer" />
+            <elementDefinition Id="0a1cc9c2-3326-43c1-9574-7192f006c6e4" />
+          </include>
+        </additions>
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
@@ -358,6 +364,10 @@
             <useCaseMoniker Id="c9a9b2ec-7012-48be-aa20-0ae347716f85" LastKnownName="Get Coords of Target" />
             <elementDefinition Id="e2bcbd17-3197-434a-b9e2-e96fdaa4b4fa" />
           </include>
+          <include Id="ef605d88-ea37-439d-823b-8dcf7859461a">
+            <useCaseMoniker Id="dfd570a2-4996-43aa-85e7-8ab8548d773c" LastKnownName="Mark Targets  on GUI" />
+            <elementDefinition Id="f466bc54-e1d2-4fcd-b6a1-343727a7e63c" />
+          </include>
         </additions>
       </useCase>
     </useCaseModelRootHasTypes>
@@ -406,6 +416,16 @@
     <useCaseModelRootHasTypes>
       <useCase Id="de33095c-cabf-4b56-8b1c-8451326f6438" name="Send OK" isAbstract="false" isLeaf="false">
         <elementDefinition Id="3ce3e0ea-2238-4bea-b05c-47931f3de533" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="3d5988c4-c17e-4f73-8b78-cdcc9cc8b1bc" name="Start Timer" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ff6a0fa9-3c06-4aaf-8d90-96be0d9204a6" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="dfd570a2-4996-43aa-85e7-8ab8548d773c" name="Mark Targets  on GUI" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d818b5db-f366-4886-8cd7-37f78273e755" />
       </useCase>
     </useCaseModelRootHasTypes>
   </packagedElements>

@@ -308,5 +308,29 @@
         <useCaseShapeMoniker Id="1a94af4e-ba83-4c59-9da9-e228901f5fac" />
       </nodes>
     </useCaseAssociationConnector>
+    <useCaseShape Id="c1904e8b-fdae-45eb-b43a-378dad9244b4" absoluteBounds="2.75, 3, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="3d5988c4-c17e-4f73-8b78-cdcc9cc8b1bc" LastKnownName="Start Timer" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <includeConnector edgePoints="[(2.34860679774998 : 2.34860679774998); (3.02639320225002 : 3.02639320225002)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black" useCaseStereotype="«include»">
+      <includeMoniker Id="d8b9baff-b0a4-479f-bb31-20b6cf4267e1" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="373cab3f-30c7-4a4d-a244-4a5fe117f73a" />
+        <useCaseShapeMoniker Id="c1904e8b-fdae-45eb-b43a-378dad9244b4" />
+      </nodes>
+    </includeConnector>
+    <useCaseShape Id="9507da38-06ac-4142-8142-252bfb6b71c1" absoluteBounds="3.5, 6.125, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="dfd570a2-4996-43aa-85e7-8ab8548d773c" LastKnownName="Mark Targets  on GUI" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <includeConnector edgePoints="[(4 : 5.375); (4 : 6.125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black" useCaseStereotype="«include»">
+      <includeMoniker Id="ef605d88-ea37-439d-823b-8dcf7859461a" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="4cfff3ee-11a2-4874-a339-fdbe0a53bcea" />
+        <useCaseShapeMoniker Id="9507da38-06ac-4142-8142-252bfb6b71c1" />
+      </nodes>
+    </includeConnector>
   </nestedChildShapes>
 </useCaseDiagram>

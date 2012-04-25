@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
   dslVersion="1.0.0.0"
   Id="75f5cb4e-ed53-4e92-855e-82390244055e"
   name="SkynetTDSModeling" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -868,6 +868,15 @@
             </relationshipOwnedElementsInternal>
           </association>
         </targetEnds>
+        <additions>
+          <include
+            Id="0a1cc9c2-3326-43c1-9574-7192f006c6e4">
+            <useCaseMoniker
+              Id="ff6a0fa9-3c06-4aaf-8d90-96be0d9204a6"
+              LastKnownName="Start Timer"
+              LastKnownLocation="SkynetTDSModeling.uml" />
+          </include>
+        </additions>
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1258,6 +1267,13 @@
               LastKnownName="Get Coords of Target"
               LastKnownLocation="SkynetTDSModeling.uml" />
           </include>
+          <include
+            Id="f466bc54-e1d2-4fcd-b6a1-343727a7e63c">
+            <useCaseMoniker
+              Id="d818b5db-f366-4886-8cd7-37f78273e755"
+              LastKnownName="Mark Targets  on GUI"
+              LastKnownLocation="SkynetTDSModeling.uml" />
+          </include>
         </additions>
       </useCase>
     </packageHasNamedElement>
@@ -1327,6 +1343,519 @@
       <useCase
         Id="3ce3e0ea-2238-4bea-b05c-47931f3de533"
         name="Send OK"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="ff6a0fa9-3c06-4aaf-8d90-96be0d9204a6"
+        name="Start Timer"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="d818b5db-f366-4886-8cd7-37f78273e755"
+        name="Mark Targets  on GUI"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="759a6e28-acf0-4f23-a0ee-77d0ab56cf24"
+        name="GUI"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="b1d7e03f-2dea-432e-b64f-9f86dc6fe0a1"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="48c30c82-606b-48ae-83bf-2223bcac67ea"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="48c30c82-606b-48ae-83bf-2223bcac67ea"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="85ed6faa-c13d-4211-aade-1f6786f8d4d4"
+        name="Controller"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="32f8163e-91c9-451f-97b6-f2a0307e164f"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="38daa4dc-2517-4965-9b3f-04a831faf452"
+                LastKnownName="Competition"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface
+            Id="b2ffa3f9-6fa5-4674-a303-6def6e42a2db"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="39c44576-665b-4985-a2fe-58eb5e35d3a4"
+                LastKnownName="Aquire Targets"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface
+            Id="c0f68256-180d-472f-acda-da9a084b38de"
+            name="Port3"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="fed8daa9-9267-4096-a9cc-32beeae27c51"
+                LastKnownName="Fire at Target"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="38daa4dc-2517-4965-9b3f-04a831faf452"
+        name="Competition"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="39c44576-665b-4985-a2fe-58eb5e35d3a4"
+        name="Aquire Targets"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="fed8daa9-9267-4096-a9cc-32beeae27c51"
+        name="Fire at Target"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="fec3298e-de2a-4866-8d9c-976a5b78dff2"
+        name="Missile System"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="43c4bbe8-8e5e-4ad2-afec-6702ac97fd76"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="41aad48d-b262-4fba-9469-eefae43ded5f"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface
+            Id="33aa06c3-f7e1-45b3-a5d1-fa48b60657ae"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="b2b3e56a-7717-4024-a589-e0fbae841988"
+                LastKnownName="Fire Missile"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface
+            Id="5b5bcc2a-3a68-4001-a01d-e2f48ed5804e"
+            name="Port3"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="d2e6c184-f61b-4b35-9f90-79221c483ee4"
+                LastKnownName="Controll MisLau"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="41aad48d-b262-4fba-9469-eefae43ded5f"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="2df5a6c7-f3a7-4a39-a4f2-5e4e1d5e38a2"
+        name="Image System"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="3a936287-1a7f-4823-83ac-a7d6be58c885"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="62d15e07-9a5e-4e32-8185-35f3d1dea14b"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface
+            Id="01435f07-012c-45dd-8dbd-f7b7e7580520"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="1d35e2e8-3ef7-4179-8538-f42d892d543f"
+                LastKnownName="Get Coord"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="b2b3e56a-7717-4024-a589-e0fbae841988"
+        name="Fire Missile"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="62d15e07-9a5e-4e32-8185-35f3d1dea14b"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="0a4b8b46-5370-4396-ac73-cf09a53102d8"
+        name="Missile Launcher"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="9e927de6-b535-46d5-98dd-85c3dc64f4c2"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="e71428b8-5795-414b-9d10-782f76d993b1"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="e71428b8-5795-414b-9d10-782f76d993b1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="39879e21-3493-41f0-9052-a40ca39a706a"
+        name="Process Image"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="73adf511-b4a1-440a-97b9-bc054a01af91"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="1155948b-1007-4223-ae9b-28dea8451fac"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface
+            Id="0546b0f5-c381-46de-8e9a-2474c2ee24f0"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="2d038598-db6b-4162-b076-70f15a1256d6"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface
+            Id="5dde54ae-1f96-4f69-9099-d9635aa93a90"
+            name="Port3"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="7e2faacc-1099-4ec9-b6d0-7ecabbdfc490"
+                LastKnownName="Coord Conversion"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="3b4b29bc-7ae9-437f-ba99-ec882ce866ab"
+        name="EMGU"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="f93e5930-0ec7-4fc4-addb-8038127f06db"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="a79d3e3a-9090-485d-94c7-fd4c8f855fd9"
+                LastKnownName="Get Image"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="a79d3e3a-9090-485d-94c7-fd4c8f855fd9"
+        name="Get Image"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="1155948b-1007-4223-ae9b-28dea8451fac"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="d2e6c184-f61b-4b35-9f90-79221c483ee4"
+        name="Controll MisLau"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="6738d82e-4448-4e5b-832b-60c868b97393"
+        name="Missile Launcher API"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="e8b314c5-8fcb-4580-9cf4-a0ff5878e8b3"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="59113c6b-02ed-4f82-a8b7-926c592b409e"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="59113c6b-02ed-4f82-a8b7-926c592b409e"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="1d35e2e8-3ef7-4179-8538-f42d892d543f"
+        name="Get Coord"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="2d038598-db6b-4162-b076-70f15a1256d6"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="7e2faacc-1099-4ec9-b6d0-7ecabbdfc490"
+        name="Coord Conversion"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="dfc9f65e-2eac-4913-8c0a-cbe5314c6149"
+        name="ImagetoRealworl Coord sys"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="29bc4c8f-17df-44d0-80e5-357d0a209e95"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="62ebff54-dc2e-4e68-8245-39fffcc9a269"
+                LastKnownLocation="SkynetTDSModeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="62ebff54-dc2e-4e68-8245-39fffcc9a269"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>

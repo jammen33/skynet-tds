@@ -17,6 +17,13 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" />
   <ItemGroup>
+    <Content Include="SkynetComponentDia.componentdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SkynetComponentDia.componentdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SkynetComponentDia.componentdiagram</DependentUpon>
+    </Content>
     <Content Include="SkynetTDS.classdiagram">
       <SubType>Content</SubType>
     </Content>
