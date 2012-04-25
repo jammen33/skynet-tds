@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<componentModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" dslVersion="1.0.0.0" Id="64bcfa85-0e76-4c22-a136-3dabcae4de09" name="SkynetTDS" linkedPackageId="77e39777-8a40-40af-b7b7-e12ba76ad0f3" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="f821fc0b-07cc-40de-a988-19fdf46ebe86">
+      <profileInstance Id="fda038a8-660f-43be-9fe7-03581948c3b4" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="9eb1d739-cc95-4716-be1b-27c85fdaafd9">
+      <profileInstance Id="cab5c54f-e7dc-4bb9-b528-70cd35324f38" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <componentModelHasComponents>
+      <component Id="aa78fd3d-8780-4861-87f3-61573be1df53" name="Userinterface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="9bd4e17f-92d7-43ab-ab91-2690db85b99c" />
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="83769af9-2665-4a1e-b082-d35fb67aadb6" name="Controller" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="4f9928b8-b0c8-43e5-bad0-737fc20daf50" />
+      </component>
+    </componentModelHasComponents>
+  </packagedElements>
+  <package Id="77e39777-8a40-40af-b7b7-e12ba76ad0f3" name="SkynetTDSModeling">
+    <elementDefinition Id="75f5cb4e-ed53-4e92-855e-82390244055e" />
+  </package>
+</componentModel>

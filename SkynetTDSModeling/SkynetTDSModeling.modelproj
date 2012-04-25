@@ -24,6 +24,13 @@
       <SubType>Content</SubType>
       <DependentUpon>SkynetTDS.classdiagram</DependentUpon>
     </Content>
+    <Content Include="SkynetTDS.componentdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SkynetTDS.componentdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SkynetTDS.componentdiagram</DependentUpon>
+    </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="ModelDefinition\SkynetTDSModeling.uml">
       <SubType>Content</SubType>
