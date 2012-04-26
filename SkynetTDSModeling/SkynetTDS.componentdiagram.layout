@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<componentDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="SkynetTDS">
+  <componentModelMoniker Id="64bcfa85-0e76-4c22-a136-3dabcae4de09" />
+  <nestedChildShapes>
+    <componentShape Id="44d02b6c-7a31-4756-abfc-f0982915fbf8" absoluteBounds="3.125, 0.5, 1.5, 0.95" customColor="161, 199, 231" whiteBoxBoundsHeight="0" whiteBoxBoundsWidth="0" blackBoxBoundsHeight="0" blackBoxBoundsWidth="0" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0">
+      <componentMoniker Id="aa78fd3d-8780-4861-87f3-61573be1df53" LastKnownName="Userinterface" />
+    </componentShape>
+    <componentShape Id="0d7c82b2-683d-417b-975c-1140ace697ea" absoluteBounds="3, 2.125, 1.5, 0.95" customColor="161, 199, 231" whiteBoxBoundsHeight="0" whiteBoxBoundsWidth="0" blackBoxBoundsHeight="0" blackBoxBoundsWidth="0" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0">
+      <componentMoniker Id="83769af9-2665-4a1e-b082-d35fb67aadb6" LastKnownName="Controller" />
+    </componentShape>
+  </nestedChildShapes>
+</componentDiagram>
