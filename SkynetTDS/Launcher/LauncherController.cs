@@ -114,14 +114,9 @@ namespace SkynetTDS.Launchers
         #region IAttributes
         public string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get;
+            set;
+
         }
 
 

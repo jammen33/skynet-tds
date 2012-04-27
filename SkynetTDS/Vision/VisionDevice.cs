@@ -14,6 +14,9 @@ namespace SkynetTDS.Vision
         Image img;
         ThreadStart captureThreadStart;
         Thread captureThread;
+        static IVisionDevice instance = null;
+        bool isCapturing;
+
         /// <summary>
         /// Object for synchronizing
         /// </summary>
@@ -28,23 +31,40 @@ namespace SkynetTDS.Vision
         public VisionDevice()
         {
             Name = "Mario";
-           
+            m_lockObject = new object();
+            isCapturing = false;
+            if (instance == null)
+            {
+                instance = this;
+            }
+        }
+
+        public static IVisionDevice getInstance()
+        {
+            if (instance == null)
+            {
+                instance = new VisionDevice();
+            }
+            return instance;
         }
         /// <summary>
         /// Puts the camera in continuous mode.
         /// </summary>
         public void Start()
         {
-            capture = new Capture();
-            m_lockObject = new object();
-            captureThreadStart = new ThreadStart(captureLoop);
-            captureThread = new Thread(captureThreadStart);
-            captureThread.Start();
-            EventArgs e = new EventArgs();
-            EventHandler cameraStarted = CameraStarted;
-            if (cameraStarted != null)
+            if (!isCapturing)
             {
-                cameraStarted(this, e);
+                capture = new Capture();
+                captureThreadStart = new ThreadStart(captureLoop);
+                captureThread = new Thread(captureThreadStart);
+                captureThread.Start();
+                EventArgs e = new EventArgs();
+                EventHandler cameraStarted = CameraStarted;
+                if (cameraStarted != null)
+                {
+                    cameraStarted(this, e);
+                }
+                isCapturing = true;
             }
         }
 
@@ -53,7 +73,17 @@ namespace SkynetTDS.Vision
         /// </summary>
         public void Stop()
         {
-            captureThread.Abort();
+            if (isCapturing)
+            {
+                captureThread.Abort();
+                EventArgs e = new EventArgs();
+                EventHandler cameraStopped = CameraStopped;
+                if (cameraStopped != null)
+                {
+                    cameraStopped(this, e);
+                }
+                isCapturing = false;
+            }
         }
 
         /// <summary>
@@ -62,7 +92,10 @@ namespace SkynetTDS.Vision
         /// <returns>The last image.</returns>
         public Image GetImage()
         {
-            return capture.QueryFrame().ToBitmap();
+            lock (m_lockObject)
+            {
+                return img;
+            }
         }
         /// <summary>
         /// Gets or sets the name of the device.
@@ -87,16 +120,7 @@ namespace SkynetTDS.Vision
                 {
                     imageCaptured(this, e);
                 }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("not working");
-                }
             }
-        }
-
-        private void onCaptureStart(EventArgs e)
-        {
-            CameraStarted(this, e);
         }
     }
 }

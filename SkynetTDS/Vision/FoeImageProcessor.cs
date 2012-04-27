@@ -22,6 +22,11 @@ namespace SkynetTDS.Vision
         int minRadius = 0;
         int maxRadius = 0;
 
+        public FoeImageProcessor()
+        {
+            targets = new Collection<Target>();
+        }
+
         public Collection<Target> DetectTargets(Image image) 
         {
             Bitmap bmpImage = new Bitmap(image);

@@ -7,6 +7,6 @@ namespace SkynetTDS.Controller
 {
     public interface IEventControllerCreator
     {
-        IEventController createEventController(string type);
+        IEventController createEventController(int type);
     }
 }

@@ -7,6 +7,8 @@ namespace SkynetTDS.Controller
 {
     public interface IEventController
     {
-        void dummy();
+        void startEvent();
+        void stopEvent();
+        void emergencyStop();
     }
 }

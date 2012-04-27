@@ -7,8 +7,22 @@ namespace SkynetTDS.Controller
 {
     class FoeEventController : IEventController
     {
+        public FoeEventController()
+        {
+            System.Windows.Forms.MessageBox.Show("Hello, World! This is FoeEventController!");
+        }
+        public void startEvent()
+        {
+            throw new NotImplementedException();
+        }
 
-        public void dummy()
+
+        public void stopEvent()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void emergencyStop()
         {
             throw new NotImplementedException();
         }

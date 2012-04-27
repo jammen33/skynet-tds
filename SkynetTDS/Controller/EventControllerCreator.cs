@@ -8,13 +8,13 @@ namespace SkynetTDS.Controller
     class EventControllerCreator : IEventControllerCreator
     {
 
-        IEventController IEventControllerCreator.createEventController(string type)
+        IEventController IEventControllerCreator.createEventController(int type)
         {
             switch (type)
             {
-                case "FoeEventController":
+                case 0:
                     return new FoeEventController();
-                case "FriendFoeEventController":
+                case 1:
                     return new FriendFoeController();
                 default:
                     throw new NotImplementedException();
