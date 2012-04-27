@@ -11,7 +11,12 @@ namespace SkynetTDS.Controller
         {
             switch (type)
             {
-
+                case "FoeEventController" :
+                    return new FoeEventController();
+                case "FriendFoeEventController" :
+                    return new FriendFoeController();
+                default:
+                    throw new NotImplementedException();
             }
 
         }

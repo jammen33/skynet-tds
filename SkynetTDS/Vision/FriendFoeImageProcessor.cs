@@ -14,7 +14,7 @@ using Emgu.CV.CvEnum;
 
 namespace SkynetTDS.Vision
 {
-    class FriendFoeImageProcessor: IImageProcessor
+    class FriendFoeImageProcessor : IImageProcessor
     {
         Collection<Target> targets;
         Image<Bgr, Byte> img;
@@ -24,16 +24,16 @@ namespace SkynetTDS.Vision
         int maxRadius = 0;
         int centerThreshold = 10;
 
-        public Collection<Target> DetectTargets(Image image) 
+        public Collection<Target> DetectTargets(Image image)
         {
             Bitmap bmpImage = new Bitmap(image);
-            img = new Image<Bgr, byte>( bmpImage );
+            img = new Image<Bgr, byte>(bmpImage);
             findFoes();
             findFriends();
             return targets;
         }
 
-        private void findFoes() 
+        private void findFoes()
         {
             Target tmpTarget;
             //Convert the image to grayscale and filter out the noise
@@ -65,7 +65,7 @@ namespace SkynetTDS.Vision
                     tmpTarget.Distance = 0;
                     tmpTarget.IsMoving = false;
 
-                    targets.Add( tmpTarget );
+                    targets.Add(tmpTarget);
                 }
             }
         }
@@ -166,48 +166,51 @@ namespace SkynetTDS.Vision
 
                     if (color.Green > 150 || color.Red > 150)
                     {
-                            tmpTarget = new Target();
+                        tmpTarget = new Target();
 
-                         if ( color.Green > color.Red ) 
-                         {
-                             tmpTarget.Color = Color.Green;
-                         } else {
-                             tmpTarget.Color = Color.Red;
-                         }
+                        if (color.Green > color.Red)
+                        {
+                            tmpTarget.Color = Color.Green;
+                        }
+                        else
+                        {
+                            tmpTarget.Color = Color.Red;
+                        }
                         tmpTarget.IsFriend = true;
                         tmpTarget.Point = box.center;
                         tmpTarget.Distance = 0;
                         tmpTarget.IsMoving = false;
                         targets.Add(tmpTarget);
+                    }
+                    else
+                    {
+                        match = false;
+                    }
                 }
-                else
-                {
-                    match = false;
-                }
-            }
             #endregion
 
-            #region draw circles
-            foreach (CircleF circle in circles)
-            {
-                Bgr color = img[(int)circle.Center.Y, (int)circle.Center.X];
-                if (color.Green > color.Blue && color.Green > color.Red)
+                #region draw circles
+                foreach (CircleF circle in circles)
                 {
-                    tmpTarget = new Target();
+                    Bgr color = img[(int)circle.Center.Y, (int)circle.Center.X];
+                    if (color.Green > color.Blue && color.Green > color.Red)
+                    {
+                        tmpTarget = new Target();
 
-                    tmpTarget.Color = Color.Green;
-                    tmpTarget.IsFriend = true;
-                    tmpTarget.Point = circle.Center;
-                    tmpTarget.Distance = 0;
-                    tmpTarget.IsMoving = false;
+                        tmpTarget.Color = Color.Green;
+                        tmpTarget.IsFriend = true;
+                        tmpTarget.Point = circle.Center;
+                        tmpTarget.Distance = 0;
+                        tmpTarget.IsMoving = false;
 
-                    targets.Add(tmpTarget);
+                        targets.Add(tmpTarget);
+                    }
                 }
+
+                #endregion
+
+                gray = null;
             }
-
-            #endregion
-
-            gray = null;
         }
     }
 }
