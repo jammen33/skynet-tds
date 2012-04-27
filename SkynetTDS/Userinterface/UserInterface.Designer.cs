@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.displayImage = new System.Windows.Forms.PictureBox();
+            this.start_capture = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.displayImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,11 +42,22 @@
             this.displayImage.TabStop = false;
             this.displayImage.Click += new System.EventHandler(this.displayImage_Click);
             // 
+            // start_capture
+            // 
+            this.start_capture.Location = new System.Drawing.Point(132, 81);
+            this.start_capture.Name = "start_capture";
+            this.start_capture.Size = new System.Drawing.Size(75, 23);
+            this.start_capture.TabIndex = 1;
+            this.start_capture.Text = "Start";
+            this.start_capture.UseVisualStyleBackColor = true;
+            this.start_capture.Click += new System.EventHandler(this.start_capture_Click);
+            // 
             // UserInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(870, 348);
+            this.Controls.Add(this.start_capture);
             this.Controls.Add(this.displayImage);
             this.Name = "UserInterface";
             this.Text = "UserInterface";
@@ -58,5 +70,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox displayImage;
+        private System.Windows.Forms.Button start_capture;
     }
 }

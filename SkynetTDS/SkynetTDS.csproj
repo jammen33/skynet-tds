@@ -104,7 +104,29 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="libs\cudart32_40_17.dll" />
+    <Content Include="libs\cufft32_40_17.dll" />
+    <Content Include="libs\cvextern.dll" />
+    <Content Include="libs\Emgu.CV.dll" />
+    <Content Include="libs\Emgu.CV.UI.dll" />
+    <Content Include="libs\Emgu.Util.dll" />
+    <Content Include="libs\npp32_40_17.dll" />
+    <Content Include="libs\opencv_calib3d231.dll" />
+    <Content Include="libs\opencv_contrib231.dll" />
+    <Content Include="libs\opencv_core231.dll" />
+    <Content Include="libs\opencv_features2d231.dll" />
+    <Content Include="libs\opencv_ffmpeg.dll" />
+    <Content Include="libs\opencv_flann231.dll" />
+    <Content Include="libs\opencv_gpu231.dll" />
+    <Content Include="libs\opencv_highgui231.dll" />
+    <Content Include="libs\opencv_imgproc231.dll" />
+    <Content Include="libs\opencv_legacy231.dll" />
+    <Content Include="libs\opencv_ml231.dll" />
+    <Content Include="libs\opencv_objdetect231.dll" />
+    <Content Include="libs\opencv_video231.dll" />
+    <Content Include="libs\USBLib.DLL" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

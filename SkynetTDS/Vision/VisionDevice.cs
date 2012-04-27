@@ -19,9 +19,16 @@ namespace SkynetTDS.Vision
         /// </summary>
         private object m_lockObject;
 
+        public event EventHandler<ImageDeviceArgs> ImageCaptured;
+
+        public event EventHandler CameraStarted;
+
+        public event EventHandler CameraStopped;
+
         public VisionDevice()
         {
             Name = "Mario";
+           
         }
         /// <summary>
         /// Puts the camera in continuous mode.
@@ -29,10 +36,16 @@ namespace SkynetTDS.Vision
         public void Start()
         {
             capture = new Capture();
+            m_lockObject = new object();
             captureThreadStart = new ThreadStart(captureLoop);
             captureThread = new Thread(captureThreadStart);
-
-            CameraStarted.Invoke(this, new EventArgs());
+            captureThread.Start();
+            EventArgs e = new EventArgs();
+            EventHandler cameraStarted = CameraStarted;
+            if (cameraStarted != null)
+            {
+                cameraStarted(this, e);
+            }
         }
 
         /// <summary>
@@ -41,7 +54,6 @@ namespace SkynetTDS.Vision
         public void Stop()
         {
             captureThread.Abort();
-            CameraStopped.Invoke(this, new EventArgs());
         }
 
         /// <summary>
@@ -69,14 +81,22 @@ namespace SkynetTDS.Vision
                 {
                     img = capture.QueryFrame().ToBitmap();
                 }
-                ImageCaptured.Invoke(this, new ImageDeviceArgs(img));
+                ImageDeviceArgs e = new ImageDeviceArgs(img);
+                EventHandler<ImageDeviceArgs> imageCaptured = ImageCaptured;
+                if (imageCaptured != null)
+                {
+                    imageCaptured(this, e);
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("not working");
+                }
             }
         }
 
-        public event EventHandler<ImageDeviceArgs> ImageCaptured;
-
-        public event EventHandler CameraStarted;
-
-        public event EventHandler CameraStopped;
+        private void onCaptureStart(EventArgs e)
+        {
+            CameraStarted(this, e);
+        }
     }
 }

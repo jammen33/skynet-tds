@@ -18,7 +18,10 @@ namespace SkynetTDS.Userinterface
         {
             InitializeComponent();
             vision = new VisionDevice();
+            vision.CameraStarted += new EventHandler(captureStarted);
+            vision.ImageCaptured += new EventHandler<ImageDeviceArgs>(updatIimage);
             vision.Start();
+            vision.Stop();
 
         }
 
@@ -32,9 +35,20 @@ namespace SkynetTDS.Userinterface
 
         }
 
-        public void EventHandler( IVisionDevice sender, ImageDeviceArgs e )
+        public void captureStarted( object sender, EventArgs e )
+        {
+           //displayImage.Image = vision.GetImage();
+        }
+
+        private void start_capture_Click(object sender, EventArgs e)
+        {
+            
+        }
+       
+        public void updatIimage(object sender, ImageDeviceArgs e)
         {
             displayImage.Image = e.Frame;
+            //displayImage.Image = vision.GetImage();
         }
     }
 }
