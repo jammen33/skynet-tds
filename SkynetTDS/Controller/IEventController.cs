@@ -5,7 +5,8 @@ using System.Text;
 
 namespace SkynetTDS.Controller
 {
-    interface IEventController
+    public interface IEventController
     {
+        void dummy();
     }
 }

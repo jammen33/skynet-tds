@@ -5,20 +5,20 @@ using System.Text;
 
 namespace SkynetTDS.Controller
 {
-    interface EventControllerCreator : IEventControllerCreator
+    class EventControllerCreator : IEventControllerCreator
     {
-        IEventController createEventController(string type)
+
+        IEventController IEventControllerCreator.createEventController(string type)
         {
             switch (type)
             {
-                case "FoeEventController" :
+                case "FoeEventController":
                     return new FoeEventController();
-                case "FriendFoeEventController" :
+                case "FriendFoeEventController":
                     return new FriendFoeController();
                 default:
                     throw new NotImplementedException();
             }
-
         }
     }
 }

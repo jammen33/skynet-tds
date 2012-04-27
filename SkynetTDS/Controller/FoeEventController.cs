@@ -8,5 +8,9 @@ namespace SkynetTDS.Controller
     class FoeEventController : IEventController
     {
 
+        public void dummy()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

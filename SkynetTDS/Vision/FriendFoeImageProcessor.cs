@@ -11,6 +11,7 @@ using SkynetTDS.Targets;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
+using Emgu.Util;
 
 namespace SkynetTDS.Vision
 {
@@ -99,26 +100,16 @@ namespace SkynetTDS.Vision
                 )[0]; //Get the lines from the first channel
 
             #region Find triangles and rectangles
-            List<Triangle2DF> triangleList = new List<Triangle2DF>();
             List<MCvBox2D> boxList = new List<MCvBox2D>();
 
-            using (MemStorage storage = new MemStorage()) //allocate storage for contour approximation
+          /**  using (MemStorage storage = new MemStorage()) //allocate storage for contour approximation
                 for (Contour<Point> contours = cannyEdges.FindContours(); contours != null; contours = contours.HNext)
                 {
                     Contour<Point> currentContour = contours.ApproxPoly(contours.Perimeter * 0.05, storage);
 
                     if (contours.Area > 250) //only consider contours with area greater than 250
                     {
-                        if (currentContour.Total == 3) //The contour has 3 vertices, it is a triangle
-                        {
-                            Point[] pts = currentContour.ToArray();
-                            triangleList.Add(new Triangle2DF(
-                               pts[0],
-                               pts[1],
-                               pts[2]
-                               ));
-                        }
-                        else if (currentContour.Total == 4) //The contour has 4 vertices.
+                        if (currentContour.Total == 4) //The contour has 4 vertices.
                         {
                             #region determine if all the angles in the contour are within the range of [80, 100] degree
                             bool isRectangle = true;
@@ -141,6 +132,7 @@ namespace SkynetTDS.Vision
                         }
                     }
                 }
+           */
             #endregion
 
 

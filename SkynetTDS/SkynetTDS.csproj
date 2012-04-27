@@ -37,6 +37,9 @@
     <Reference Include="Emgu.CV">
       <HintPath>lib\Emgu.CV.dll</HintPath>
     </Reference>
+    <Reference Include="Emgu.Util">
+      <HintPath>lib\Emgu.Util.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +50,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="USBLib">
+      <HintPath>lib\USBLib.DLL</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\EventControllerCreator.cs" />
@@ -55,6 +61,8 @@
     <Compile Include="Controller\IEventController.cs" />
     <Compile Include="Controller\IEventControllerCreator.cs" />
     <Compile Include="Launcher\ILauncher.cs" />
+    <Compile Include="Launcher\LauncherController.cs" />
+    <Compile Include="Launcher\MissileLauncher.cs" />
     <Compile Include="Launcher\PositionEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,7 +79,9 @@
     <Compile Include="Vision\FoeImageProcessor.cs" />
     <Compile Include="Vision\FriendFoeImageProcessor.cs" />
     <Compile Include="Vision\IImageProcessor.cs" />
+    <Compile Include="Vision\ImageDeviceArgs.cs" />
     <Compile Include="Vision\IVisionDevice.cs" />
+    <Compile Include="Vision\VisionDevice.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

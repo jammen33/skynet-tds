@@ -7,5 +7,9 @@ namespace SkynetTDS.Controller
 {
     class FriendFoeController : IEventController
     {
+        public void dummy()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
