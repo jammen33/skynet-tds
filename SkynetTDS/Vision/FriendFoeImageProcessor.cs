@@ -96,6 +96,7 @@ namespace SkynetTDS.Vision
         private void findFriends()
         {
             Target tmpTarget;
+            bool ok = true;
             //Convert the image to grayscale and filter out the noise
             Image<Gray, Byte> gray = img.Copy().Convert<Gray, Byte>().PyrDown().PyrUp();
 
@@ -206,24 +207,36 @@ namespace SkynetTDS.Vision
                 #region draw circles
                 foreach (CircleF circle in circles)
                 {
-                    Bgr color = img[(int)circle.Center.Y, (int)circle.Center.X];
-                    if (color.Green > color.Blue && color.Green > color.Red)
+                    foreach (Target t in targets)
                     {
-                        tmpTarget = new Target();
+                        if (Math.Abs(circle.Center.X - t.Point.X) < centerThreshold)
+                        {
+                            ok = false;
+                        }
+                    }
+                    if (ok)
+                    {
+                        Bgr color = img[(int)circle.Center.Y, (int)circle.Center.X];
+                        if (color.Green > color.Blue && color.Green > color.Red && color.Green > 150)
+                        {
+                            tmpTarget = new Target();
 
-                        tmpTarget.Color = Color.Green;
-                        tmpTarget.IsFriend = true;
-                        tmpTarget.Point = circle.Center;
-                        tmpTarget.Distance = 0;
-                        tmpTarget.IsMoving = false;
+                            tmpTarget.Color = Color.Green;
+                            tmpTarget.IsFriend = true;
+                            tmpTarget.Point = circle.Center;
+                            tmpTarget.Distance = 0;
+                            tmpTarget.IsMoving = false;
 
-                        targets.Add(tmpTarget);
+                            targets.Add(tmpTarget);
+                        }
+                    }
+                    else
+                    {
+                        ok = true;
                     }
                 }
 
                 #endregion
-
-                gray = null;
             }
         }
     }

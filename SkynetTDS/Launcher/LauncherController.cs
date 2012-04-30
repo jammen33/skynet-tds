@@ -28,6 +28,10 @@ namespace SkynetTDS.Launchers
             //Initialize launcher and reset the position to the base coordinates
             launcher = new MissileLauncher();
         }
+        ~LauncherController()
+        {
+            launcher.command_switchLED(false);
+        }
 
         #region Functions
         //If trackx or tracky have gone out of bounds, set them to bounds

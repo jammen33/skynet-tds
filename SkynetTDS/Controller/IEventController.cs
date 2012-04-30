@@ -14,5 +14,7 @@ namespace SkynetTDS.Controller
 
         event EventHandler MissileFired;
         event EventHandler<FoundTatgetEventArgs> FoundTargets;
+        event EventHandler OutOfMissiles;
+        event EventHandler EventTerminated;
     }
 }

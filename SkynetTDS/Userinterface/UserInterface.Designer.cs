@@ -46,7 +46,7 @@
             // 
             this.displayImage.Location = new System.Drawing.Point(132, 12);
             this.displayImage.Name = "displayImage";
-            this.displayImage.Size = new System.Drawing.Size(673, 336);
+            this.displayImage.Size = new System.Drawing.Size(673, 486);
             this.displayImage.TabIndex = 0;
             this.displayImage.TabStop = false;
             // 
@@ -75,7 +75,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(442, 353);
+            this.label1.Location = new System.Drawing.Point(442, 501);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 13);
             this.label1.TabIndex = 5;
@@ -84,7 +84,7 @@
             // missileCount
             // 
             this.missileCount.AutoSize = true;
-            this.missileCount.Location = new System.Drawing.Point(563, 353);
+            this.missileCount.Location = new System.Drawing.Point(563, 501);
             this.missileCount.Name = "missileCount";
             this.missileCount.Size = new System.Drawing.Size(0, 13);
             this.missileCount.TabIndex = 6;
@@ -112,7 +112,7 @@
             // foeCount
             // 
             this.foeCount.AutoSize = true;
-            this.foeCount.Location = new System.Drawing.Point(205, 353);
+            this.foeCount.Location = new System.Drawing.Point(205, 501);
             this.foeCount.Name = "foeCount";
             this.foeCount.Size = new System.Drawing.Size(0, 13);
             this.foeCount.TabIndex = 10;
@@ -120,7 +120,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(129, 353);
+            this.label3.Location = new System.Drawing.Point(129, 501);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 13);
             this.label3.TabIndex = 9;
@@ -129,7 +129,7 @@
             // friendCount
             // 
             this.friendCount.AutoSize = true;
-            this.friendCount.Location = new System.Drawing.Point(210, 366);
+            this.friendCount.Location = new System.Drawing.Point(210, 514);
             this.friendCount.Name = "friendCount";
             this.friendCount.Size = new System.Drawing.Size(0, 13);
             this.friendCount.TabIndex = 12;
@@ -137,7 +137,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(129, 366);
+            this.label4.Location = new System.Drawing.Point(129, 514);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 13);
             this.label4.TabIndex = 11;
@@ -147,7 +147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(925, 411);
+            this.ClientSize = new System.Drawing.Size(935, 539);
             this.Controls.Add(this.friendCount);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.foeCount);

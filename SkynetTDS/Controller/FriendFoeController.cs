@@ -21,28 +21,36 @@ namespace SkynetTDS.Controller
         ILauncher launcher;
         Image img;
         Collection<Target> targets;
+
         bool shouldRun;
         int numberOfMissiles;
         bool isRunning;
-
-        /// <summary>
-        /// Object for synchronizing
-        /// </summary>
-        private object m_lockObject;
 
         public FriendFoeController()
         {
             launcher = new LauncherController();
             numberOfMissiles = 4;
             launcher.MissileFired += new EventHandler(launcherFired);
-
-            System.Windows.Forms.MessageBox.Show("Hello, World! This is FriendFoeController!");
-            m_lockObject = new object();
             vision = VisionDevice.getInstance();
             processor = new FriendFoeImageProcessor();
             isRunning = false;
-
         }
+        ~FriendFoeController()
+        {
+            vision = null;
+            launcher = null;
+            if (controllerThread.IsAlive)
+            {
+                controllerThread.Abort();
+            }
+        }
+
+        public void calibrateLauncher()
+        {
+
+            launcher.Calibrate();
+        }
+
         public void startEvent()
         {
             if (!isRunning)
@@ -61,6 +69,8 @@ namespace SkynetTDS.Controller
             if (isRunning)
             {
                 shouldRun = false;
+                isRunning = false;
+                onEventTerminated(new EventArgs());
             }
         }
 
@@ -68,8 +78,14 @@ namespace SkynetTDS.Controller
         {
             controllerThread.Abort();
             shouldRun = false;
+            isRunning = false;
+            onEventTerminated(new EventArgs());
         }
 
+        #region run
+        /// <summary>
+        /// Loop to run as a thread
+        /// </summary>
         private void run()
         {
             int foeCount = 0;
@@ -77,9 +93,11 @@ namespace SkynetTDS.Controller
             vision.Start();
             while (shouldRun)
             {
-                System.Windows.Forms.MessageBox.Show("loop");
                 img = vision.GetImage();
                 targets = processor.DetectTargets(img);
+                foeCount = 0;
+                friendCount = 0;
+
                 foreach (Target t in targets)
                 {
                     if(t.IsFriend)
@@ -103,12 +121,11 @@ namespace SkynetTDS.Controller
                     {
                         lock (this)
                         {
-                           // System.Windows.Forms.MessageBox.Show(t.Point.X.ToString());
                             launcher.MoveAbsolute(((int)t.Point.X - (img.Width/2))*2, (int)t.Point.Y, 0);
                             if (numberOfMissiles > 0)
                             {
                                 //check for stop before we fire
-                                if (shouldRun != false)
+                                if (shouldRun)
                                 {
                                     launcher.Fire(1);
                                     numberOfMissiles--;
@@ -121,6 +138,8 @@ namespace SkynetTDS.Controller
                             else
                             {
                                 shouldRun = false;
+                                onOutOfMissiles(new EventArgs());
+                                stopEvent();
                                 break;
                             }
                         }
@@ -128,9 +147,10 @@ namespace SkynetTDS.Controller
                 }
                 targets.Clear();
             }
-            System.Windows.Forms.MessageBox.Show("Event Over");
+            
         }
-
+        #endregion
+        #region events
         private void launcherFired(object sender, EventArgs e)
         {
             onMissileFired(e);
@@ -146,7 +166,6 @@ namespace SkynetTDS.Controller
             }
         }
 
-
         public event EventHandler<FoundTatgetEventArgs> FoundTargets;
         private void onFoundTargets(FoundTatgetEventArgs e)
         {
@@ -157,11 +176,27 @@ namespace SkynetTDS.Controller
             }
         }
 
-
-        public void calibrateLauncher()
+        public event EventHandler OutOfMissiles;
+        private void onOutOfMissiles(EventArgs e)
         {
-
-            launcher.Calibrate();
+            EventHandler empty = OutOfMissiles;
+            if (empty != null)
+            {
+                empty.Invoke(this, e);
+            }
         }
+        public event EventHandler EventTerminated;
+        private void onEventTerminated(EventArgs e)
+        {
+            EventHandler term = EventTerminated;
+            if (term != null)
+            {
+                term.Invoke(this, e);
+            }
+        }
+        #endregion
+
+
+
     }
 }

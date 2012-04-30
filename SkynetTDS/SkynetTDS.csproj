@@ -37,9 +37,14 @@
     <Reference Include="Emgu.CV">
       <HintPath>lib\Emgu.CV.dll</HintPath>
     </Reference>
+    <Reference Include="Emgu.CV.UI, Version=2.3.0.1416, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\Emgu.CV.UI.dll</HintPath>
+    </Reference>
     <Reference Include="Emgu.Util">
       <HintPath>lib\Emgu.Util.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,6 +58,7 @@
     <Reference Include="USBLib">
       <HintPath>lib\USBLib.DLL</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\EventControllerCreator.cs" />
@@ -71,6 +77,12 @@
     <Compile Include="Targets\Shape.cs" />
     <Compile Include="Targets\SquareShape.cs" />
     <Compile Include="Targets\Target.cs" />
+    <Compile Include="Userinterface\eventSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Userinterface\eventSelect.Designer.cs">
+      <DependentUpon>eventSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Userinterface\UserInterface.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +104,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Userinterface\eventSelect.resx">
+      <DependentUpon>eventSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Userinterface\UserInterface.resx">
       <DependentUpon>UserInterface.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,26 +121,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="libs\cudart32_40_17.dll" />
-    <Content Include="libs\cufft32_40_17.dll" />
-    <Content Include="libs\cvextern.dll" />
     <Content Include="libs\Emgu.CV.dll" />
     <Content Include="libs\Emgu.CV.UI.dll" />
     <Content Include="libs\Emgu.Util.dll" />
-    <Content Include="libs\npp32_40_17.dll" />
-    <Content Include="libs\opencv_calib3d231.dll" />
-    <Content Include="libs\opencv_contrib231.dll" />
     <Content Include="libs\opencv_core231.dll" />
-    <Content Include="libs\opencv_features2d231.dll" />
-    <Content Include="libs\opencv_ffmpeg.dll" />
-    <Content Include="libs\opencv_flann231.dll" />
-    <Content Include="libs\opencv_gpu231.dll" />
     <Content Include="libs\opencv_highgui231.dll" />
     <Content Include="libs\opencv_imgproc231.dll" />
-    <Content Include="libs\opencv_legacy231.dll" />
-    <Content Include="libs\opencv_ml231.dll" />
-    <Content Include="libs\opencv_objdetect231.dll" />
-    <Content Include="libs\opencv_video231.dll" />
     <Content Include="libs\USBLib.DLL" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

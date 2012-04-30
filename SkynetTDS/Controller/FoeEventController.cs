@@ -38,5 +38,10 @@ namespace SkynetTDS.Controller
         {
             throw new NotImplementedException();
         }
+
+        public event EventHandler OutOfMissiles;
+
+
+        public event EventHandler EventTerminated;
     }
 }

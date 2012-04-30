@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Collections.ObjectModel;
 
+
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
@@ -26,39 +27,61 @@ namespace SkynetTDS.Userinterface
         IEventController controller;
         Collection<Target> targets;
 
-        /// <summary>
-        /// Object for synchronizing
-        /// </summary>
-        private object m_lockObject;
         delegate void SetTextCallback(string text);
         delegate void setCountsCallBack();
-        delegate void setHWCallBack(ImageDeviceArgs e);
 
         int eventType;
         int numberOfMissiles;
         int numberOfFoes;
         int numberOfFriends;
         bool isEvent;
-        bool HWSet;
 
         public UserInterface()
         {
             InitializeComponent();
-            m_lockObject = new object();
+            
+            //set default values
+            stopEvent.Enabled = false;
+            estop.Enabled = false;
             numberOfMissiles = 4;
             isEvent = false;
-            HWSet = false;
 
+            //set up controller
+            controllerCreator = new EventControllerCreator();
+            controller = controllerCreator.createEventController(showEventSelect());
+            controller.calibrateLauncher();
+            controller.FoundTargets += new EventHandler<FoundTatgetEventArgs>(targetsFound);
+            controller.MissileFired += new EventHandler(missileFired);
+            controller.EventTerminated += new EventHandler(eventTerminated);
+            controller.OutOfMissiles += new EventHandler(outOfMissiles);
+
+            //set up camera
             vision = VisionDevice.getInstance();
             vision.Start();
-
-            controllerCreator = new EventControllerCreator();
             vision.CameraStarted += new EventHandler(captureStarted);
             vision.ImageCaptured += new EventHandler<ImageDeviceArgs>(updatIimage);
             vision.CameraStopped += new EventHandler(captureStopped);
 
+            //initalize missile count
             missileCount.Text = numberOfMissiles.ToString();
         }
+
+        /// <summary>
+        /// displays a menu for the user to select an event type
+        /// </summary>
+        /// <returns>event number</returns>
+        private int showEventSelect()
+        {
+            eventSelect dlg = new eventSelect();
+            dlg.ShowDialog();
+            if (dlg.DialogResult == DialogResult.OK)
+            {
+                return dlg.StateSelected;
+                
+            }
+            return -1;
+        }
+
 
         public void captureStarted( object sender, EventArgs e )
         {
@@ -69,11 +92,6 @@ namespace SkynetTDS.Userinterface
         {
             lock (e.Frame)
             {
-                if (!HWSet)
-                {
-                    setHWCallBack d = new setHWCallBack(setHW);
-                    this.Invoke(d, new object[] { e });
-                }
                 if (targets != null)
                 {
                     Image<Bgr, byte> tmp = new Image<Bgr, byte>(new Bitmap((Image)e.Frame.Clone()));
@@ -86,7 +104,6 @@ namespace SkynetTDS.Userinterface
                         else
                         {
                             tmp.Draw(new Cross2DF(t.Point, 15, 15), new Bgr(Color.Orange), 5);
-                            //tmp.Draw(circle, new Bgr(Color.Red), 2);
                         }
                     }
                     displayImage.Image = tmp.Copy().ToBitmap();
@@ -100,15 +117,7 @@ namespace SkynetTDS.Userinterface
 
         public void captureStopped(object sender, EventArgs e)
         {
-            MessageBox.Show("Capture Stopped!");
-        }
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            vision.Stop();
-            if (controller != null)
-            {
-                controller.stopEvent();
-            }
+
         }
 
         private void eventTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -118,11 +127,14 @@ namespace SkynetTDS.Userinterface
 
         private void StartEvent_Click(object sender, EventArgs e)
         {
-            spawnEventController();
+            stopEvent.Enabled = true;
+            estop.Enabled = true;
+            StartEvent.Enabled = false;
+           // spawnEventController();
             controller.startEvent();
         }
 
-        private void spawnEventController()
+   /*     private void spawnEventController()
         {
             if (!isEvent)
             {
@@ -131,7 +143,7 @@ namespace SkynetTDS.Userinterface
                 controller.MissileFired += new EventHandler(missileFired);
                 isEvent = true;
             }
-        }
+        }*/
         private void targetsFound( object sender, FoundTatgetEventArgs e)
         {
             lock(this)
@@ -152,6 +164,7 @@ namespace SkynetTDS.Userinterface
             }
 
         }
+        #region eventHandlers
         private void missileFired( object sender, EventArgs e)
         {
             lock (this)
@@ -168,6 +181,20 @@ namespace SkynetTDS.Userinterface
                 }
             }
         }
+
+        private void outOfMissiles(object sender, EventArgs e)
+        {
+            //controller.stopEvent();
+        }
+
+        private void eventTerminated( object sender, EventArgs e)
+        {
+            StartEvent.Enabled = true;
+            stopEvent.Enabled = false;
+            estop.Enabled = false;
+        }
+        #endregion
+
         void setMissileCount(string text)
         {
             missileCount.Text = text;
@@ -180,18 +207,31 @@ namespace SkynetTDS.Userinterface
 
         private void stopEvent_Click(object sender, EventArgs e)
         {
-            controller.stopEvent();
+            if (controller != null)
+            {
+                controller.stopEvent();
+            }
         }
 
         private void estop_Click(object sender, EventArgs e)
         {
-            controller.emergencyStop();
+            if (controller != null)
+            {
+                controller.emergencyStop();
+            }
         }
-        private void setHW(ImageDeviceArgs e)
+
+        private void UserInterface_FormClosed(Object sender, FormClosedEventArgs e)
         {
-            displayImage.Height = e.Frame.Height;
-            displayImage.Width = e.Frame.Width;
-            HWSet = true;
+            if (vision != null)
+            {
+                vision.Stop();
+            }
+            if (controller != null)
+            {
+                //force the thread to die
+                controller.emergencyStop();
+            }
         }
     }
 }
