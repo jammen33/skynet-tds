@@ -21,6 +21,8 @@ namespace SkynetTDS.Controller
         ILauncher launcher;
         Image img;
         Collection<Target> targets;
+        bool shouldRun;
+        int numberOfMissiles;
         bool isRunning;
 
         /// <summary>
@@ -31,7 +33,8 @@ namespace SkynetTDS.Controller
         public FriendFoeController()
         {
             launcher = new LauncherController();
-            launcher.Calibrate();
+            numberOfMissiles = 4;
+            launcher.MissileFired += new EventHandler(launcherFired);
 
             System.Windows.Forms.MessageBox.Show("Hello, World! This is FriendFoeController!");
             m_lockObject = new object();
@@ -44,6 +47,8 @@ namespace SkynetTDS.Controller
         {
             if (!isRunning)
             {
+                isRunning = true;
+                shouldRun = true;
                 controllerThreadStart = new ThreadStart(run);
                 controllerThread = new Thread(controllerThreadStart);
                 controllerThread.Start();
@@ -55,36 +60,108 @@ namespace SkynetTDS.Controller
         {
             if (isRunning)
             {
-                controllerThread.Abort();
+                shouldRun = false;
             }
         }
 
         public void emergencyStop()
         {
             controllerThread.Abort();
+            shouldRun = false;
         }
 
         private void run()
         {
+            int foeCount = 0;
+            int friendCount = 0;
             vision.Start();
-            img = vision.GetImage();
-            targets = processor.DetectTargets(img);
-            while(true)
+            while (shouldRun)
             {
+                System.Windows.Forms.MessageBox.Show("loop");
+                img = vision.GetImage();
+                targets = processor.DetectTargets(img);
+                foreach (Target t in targets)
+                {
+                    if(t.IsFriend)
+                    {
+                        friendCount++;
+                    }
+                    else
+                    {
+                        foeCount++;
+                    }
+                }
+                FoundTatgetEventArgs e = new FoundTatgetEventArgs(foeCount,friendCount, targets);
+                onFoundTargets(e);
+                if(foeCount < 1)
+                {
+                    break;
+                }
                 foreach( Target t in targets )
                 {
                     if (!t.IsFriend)
                     {
-                        //atk
-
-                        lock (m_lockObject)
+                        lock (this)
                         {
-                            launcher.MoveAbsolute((int)t.Point.X, (int)t.Point.Y, 0);
-                            launcher.Fire(1);
+                           // System.Windows.Forms.MessageBox.Show(t.Point.X.ToString());
+                            launcher.MoveAbsolute(((int)t.Point.X - (img.Width/2))*2, (int)t.Point.Y, 0);
+                            if (numberOfMissiles > 0)
+                            {
+                                //check for stop before we fire
+                                if (shouldRun != false)
+                                {
+                                    launcher.Fire(1);
+                                    numberOfMissiles--;
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                shouldRun = false;
+                                break;
+                            }
                         }
                     }
                 }
+                targets.Clear();
             }
+            System.Windows.Forms.MessageBox.Show("Event Over");
+        }
+
+        private void launcherFired(object sender, EventArgs e)
+        {
+            onMissileFired(e);
+        }
+
+        public event EventHandler MissileFired;
+        private void onMissileFired( EventArgs e )
+        {
+            EventHandler missileFired = MissileFired;
+            if (missileFired != null)
+            {
+                missileFired.Invoke(this, e);
+            }
+        }
+
+
+        public event EventHandler<FoundTatgetEventArgs> FoundTargets;
+        private void onFoundTargets(FoundTatgetEventArgs e)
+        {
+            EventHandler<FoundTatgetEventArgs> foundTargets = FoundTargets;
+            if (foundTargets != null)
+            {
+                foundTargets.Invoke(this, e);
+            }
+        }
+
+
+        public void calibrateLauncher()
+        {
+
+            launcher.Calibrate();
         }
     }
 }

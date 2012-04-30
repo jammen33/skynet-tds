@@ -11,6 +11,7 @@ namespace SkynetTDS.Launchers
         #region Attributes
         int trackx;
         int tracky;
+        int maxNumberOfMissiles;
         MissileLauncher launcher;
         #endregion
 
@@ -21,9 +22,11 @@ namespace SkynetTDS.Launchers
             tracky = 0;
             Name = "Gargamel";
 
+            //set number of missiles
+            maxNumberOfMissiles = 4;
+
             //Initialize launcher and reset the position to the base coordinates
             launcher = new MissileLauncher();
-            launcher.command_reset();
         }
 
         #region Functions
@@ -33,17 +36,17 @@ namespace SkynetTDS.Launchers
             if (trackx > 2750)
             {
                 trackx = 2750;
-                LimitReached.Invoke(this, new EventArgs());
+                onLimitReached(new EventArgs());
             }
             else if (trackx < -2750)
             {
                 trackx = -2750;
-                LimitReached.Invoke(this, new EventArgs());
+                onLimitReached(new EventArgs());
             }
             if (tracky > 500)
             {
                 tracky = 500;
-                LimitReached.Invoke(this, new EventArgs());
+                onLimitReached(new EventArgs());
             }
             if (tracky < -250)
                 tracky = -250;
@@ -57,7 +60,7 @@ namespace SkynetTDS.Launchers
             for (; index <= number_of_missiles; index++)
             {
                 launcher.command_Fire();
-                MissileFired.Invoke(this, new EventArgs());
+                onMissileFired(new EventArgs());
             }
         }
 
@@ -86,7 +89,8 @@ namespace SkynetTDS.Launchers
                 launcher.command_Down(Math.Abs(y));
             else if (y > 0)
                 launcher.command_Up(Math.Abs(y));
-            PositionChanged.Invoke(this, new PositionEventArgs(trackx, tracky));
+
+            onPositionChanged(new PositionEventArgs(trackx, tracky));
         }
 
         //Move the launcher back to center based on the trackx and tracky values
@@ -105,10 +109,32 @@ namespace SkynetTDS.Launchers
 
         #region Events
         public event EventHandler<PositionEventArgs> PositionChanged;
-
         public event EventHandler LimitReached;
-
         public event EventHandler MissileFired;
+        private void onPositionChanged(PositionEventArgs e)
+        {
+            EventHandler<PositionEventArgs> positionChanged = PositionChanged;
+            if (positionChanged != null)
+            {
+                positionChanged(this, e);
+            }
+        }
+        private void onLimitReached(EventArgs e)
+        {
+            EventHandler limitReached = LimitReached;
+            if (limitReached != null)
+            {
+                limitReached(this, e);
+            }
+        }
+        private void onMissileFired(EventArgs e)
+        {
+            EventHandler missileFired = MissileFired;
+            if (missileFired != null)
+            {
+                missileFired(this, e);
+            }
+        }
         #endregion
 
         #region IAttributes

@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Controller\EventControllerCreator.cs" />
     <Compile Include="Controller\FoeEventController.cs" />
+    <Compile Include="Controller\FoundTatgetEventArgs.cs" />
     <Compile Include="Controller\FriendFoeController.cs" />
     <Compile Include="Controller\IEventController.cs" />
     <Compile Include="Controller\IEventControllerCreator.cs" />
