@@ -17,12 +17,40 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" />
   <ItemGroup>
+    <Content Include="Skynet Sequence_Events.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Skynet Sequence_Events.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Skynet Sequence_Events.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SkynetActivityDia.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SkynetActivityDia.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SkynetActivityDia.activitydiagram</DependentUpon>
+    </Content>
     <Content Include="SkynetComponentDia.componentdiagram">
       <SubType>Content</SubType>
     </Content>
     <Content Include="SkynetComponentDia.componentdiagram.layout">
       <SubType>Content</SubType>
       <DependentUpon>SkynetComponentDia.componentdiagram</DependentUpon>
+    </Content>
+    <Content Include="skynetSequenceTargeting.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="skynetSequenceTargeting.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>skynetSequenceTargeting.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SkynetSequence_creation.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SkynetSequence_creation.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SkynetSequence_creation.sequencediagram</DependentUpon>
     </Content>
     <Content Include="SkynetTDS.classdiagram">
       <SubType>Content</SubType>

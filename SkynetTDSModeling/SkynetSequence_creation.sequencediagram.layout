@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sequenceDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="SkynetSequence_creation">
+  <SequenceDesignerModelMoniker Id="b7dd3243-dc67-4fe5-8fd2-df3265b1d21c" />
+  <nestedChildShapes>
+    <lifelineShape Id="5099583f-0b6c-452e-89f6-d8dbe724400b" absoluteBounds="1.9895833730697632, 1, 0.15, 7" visible="true" visualStyleMode="Modified">
+      <lifelineMoniker Id="8fedebff-d927-44ba-a1a3-5150a0a25033" LastKnownName="main" />
+      <relativeChildShapes>
+        <umlLifelineHeadShape Id="6a5a76d8-8eb6-4c90-92f9-b396a817a06c" absoluteBounds="1.5645833730697631, 0.6, 1, 0.4" customColor="White" visualStyleMode="Modified">
+          <lifelineMoniker Id="8fedebff-d927-44ba-a1a3-5150a0a25033" LastKnownName="main" />
+          <relativeChildShapes />
+        </umlLifelineHeadShape>
+        <lifelineHoverShape Id="ecaa5366-93a0-4a9c-a839-8d65f210e19e" absoluteBounds="1.9895833730697632, 1, 0, 7">
+          <lifelineMoniker Id="8fedebff-d927-44ba-a1a3-5150a0a25033" LastKnownName="main" />
+        </lifelineHoverShape>
+      </relativeChildShapes>
+    </lifelineShape>
+  </nestedChildShapes>
+</sequenceDesignerDiagram>

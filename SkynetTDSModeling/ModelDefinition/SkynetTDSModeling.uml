@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel"
   dslVersion="1.0.0.0"
   Id="75f5cb4e-ed53-4e92-855e-82390244055e"
   name="SkynetTDSModeling" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -1858,6 +1858,341 @@
         Id="62ebff54-dc2e-4e68-8245-39fffcc9a269"
         isAbstract="false"
         isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <interaction
+        Id="651d4416-ecf2-4164-9f90-77417738bfeb"
+        name="Skynet Sequence_Events"
+        collapseFragmentsFlag="false"
+        isActiveClass="false"
+        isAbstract="false"
+        isLeaf="false"
+        isReentrant="false">
+        <lifelines>
+          <lifeline
+            Id="d0149198-e5b8-4050-982b-644370583057"
+            name="Lifeline1"
+            isActor="false"
+            lifelineDisplayName="Lifeline1" />
+        </lifelines>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <interaction
+        Id="d1c481f5-a846-4289-8749-8d88e250ccf9"
+        name="SkynetSequence_creation"
+        collapseFragmentsFlag="false"
+        isActiveClass="false"
+        isAbstract="false"
+        isLeaf="false"
+        isReentrant="false">
+        <lifelines>
+          <lifeline
+            Id="0e484019-9630-4d73-a59c-d08cb681ae78"
+            name="main"
+            isActor="false"
+            lifelineDisplayName="main" />
+        </lifelines>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="85088aee-28ec-45a9-a8b7-5b0530c909c4"
+        name="SkynetActivityDia"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <opaqueAction
+            Id="b82025e9-55f5-4b03-acce-3ba0c8ffa440"
+            name="Start UI"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="ecab8e7d-ed12-40f2-b36a-56b0cd0b7aff"
+                isLeaf="false">
+                <forkNodeMoniker
+                  Id="5f2ee9fa-4b5c-4fd6-8cff-c44696528a11"
+                  LastKnownName="Fork3"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="48fc536e-be4c-4e1e-ab9b-f5e8e0b7e43e"
+            name="Select Competition"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="9d9f41ff-cd76-4cbb-8f5f-d0ec03df0038"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="2f3b59d2-17b5-4a8e-b4d6-5ea532098204"
+                  LastKnownName="Start GUI Timer"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <forkNode
+            Id="e1ac97ca-ae57-4dec-a14f-44350f768838"
+            name="Fork1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="a4071629-ce3b-4022-9511-e63fd7b66135"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="817ee3de-0ad7-441c-8b93-c6b22f370862"
+                  LastKnownName="Capture Image"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="15ace392-ac48-418b-a2c9-69a01e206b28"
+                isLeaf="false">
+                <acceptEventActionMoniker
+                  Id="e5d9d4e1-c66a-488e-9c23-564cc00897aa"
+                  LastKnownName="Update GUI"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <opaqueAction
+            Id="35ad4432-2274-46c3-ae8a-ee92a392f616"
+            name="Start WebCam"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="180d4dba-d511-4fb7-a1c0-bc1e5a2eceae"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="ab7037e6-ee90-4a60-876c-6a588bedda56"
+                  LastKnownName="Join1"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="2f3b59d2-17b5-4a8e-b4d6-5ea532098204"
+            name="Start GUI Timer"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="4e01a658-b1fc-462b-b5cc-86074218e154"
+                isLeaf="false">
+                <forkNodeMoniker
+                  Id="e1ac97ca-ae57-4dec-a14f-44350f768838"
+                  LastKnownName="Fork1"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <initialNode
+            Id="691c8246-09f5-45a4-bbfa-bfae79ccd7d1"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="c3a52646-6440-408f-878b-6fc70b1cdf51"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="b82025e9-55f5-4b03-acce-3ba0c8ffa440"
+                  LastKnownName="Start UI"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction
+            Id="817ee3de-0ad7-441c-8b93-c6b22f370862"
+            name="Capture Image"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="babd2777-8123-45f4-b7fb-888ed50ce6c9"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="013ae602-76b5-4c3c-a041-301b7b1a99f3"
+                  LastKnownName="Locate Targets"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="013ae602-76b5-4c3c-a041-301b7b1a99f3"
+            name="Locate Targets"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="e594e835-7182-46fd-96d4-cef5b1e4064d"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="5378e412-f625-4fb8-9f62-85e4e963fdd1"
+                  LastKnownName="Get Target Coords"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="5378e412-f625-4fb8-9f62-85e4e963fdd1"
+            name="Get Target Coords"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="d60d4cd4-73f6-45a7-a02f-8b46d5f66d86"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7690219d-1213-40c3-bf43-0bca46b21405"
+                  LastKnownName="Miss Launcher Move to Coords"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <sendSignalAction
+            Id="0bb15048-ba9d-4e72-9c32-a2ceeda990e9"
+            name="Send Missile Fired Event"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="a7e2fc9c-0e7b-4483-9a12-9e957184da95"
+                isLeaf="false">
+                <acceptEventActionMoniker
+                  Id="e5d9d4e1-c66a-488e-9c23-564cc00897aa"
+                  LastKnownName="Update GUI"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="c0ccc7b2-8822-46bc-8c6e-c11a4d8ee222"
+                isLeaf="false">
+                <acceptEventActionMoniker
+                  Id="247ac4c9-a260-4805-817b-f7caa47645c5"
+                  LastKnownName="Miss Launcher Move to Coords"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <opaqueAction
+            Id="7690219d-1213-40c3-bf43-0bca46b21405"
+            name="Miss Launcher Move to Coords"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="6a590885-0d7a-4e1f-82c5-d1d15e5ceb9a"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="efb8914b-455c-4f46-9007-faf6335c71fc"
+                  LastKnownName="Fire Missile"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="f4d052d1-d59b-488d-b27f-c26b7a8b98b0"
+            name="ActivityFinal1"
+            isLeaf="false" />
+          <opaqueAction
+            Id="efb8914b-455c-4f46-9007-faf6335c71fc"
+            name="Fire Missile"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="c8b6e3e2-96bf-45c9-a192-c55be1a1fcff"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="d7fa9962-432d-4ff0-85e4-23612173f047"
+                  LastKnownName="Decrement Missile Count"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <joinNode
+            Id="ab7037e6-ee90-4a60-876c-6a588bedda56"
+            name="Join1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="bec22adb-1338-4f33-8745-1e0f1088e644"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="f4d052d1-d59b-488d-b27f-c26b7a8b98b0"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+          <forkNode
+            Id="5f2ee9fa-4b5c-4fd6-8cff-c44696528a11"
+            name="Fork3"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="aa2fe635-1fc5-4987-9321-35077289ed98"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="35ad4432-2274-46c3-ae8a-ee92a392f616"
+                  LastKnownName="Start WebCam"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="39aeb492-49fe-4459-8935-7a2c5a8b53f6"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="48fc536e-be4c-4e1e-ab9b-f5e8e0b7e43e"
+                  LastKnownName="Select Competition"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <acceptEventAction
+            Id="e5d9d4e1-c66a-488e-9c23-564cc00897aa"
+            name="Update GUI"
+            isLeaf="false"
+            isUnmarshall="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="69fa3e76-5ac1-4dbf-bf23-630d0b248017"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="ab7037e6-ee90-4a60-876c-6a588bedda56"
+                  LastKnownName="Join1"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </acceptEventAction>
+          <opaqueAction
+            Id="d7fa9962-432d-4ff0-85e4-23612173f047"
+            name="Decrement Missile Count"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="81f1bb77-36c6-4de0-8efd-d9ed5624671a"
+                isLeaf="false">
+                <sendSignalActionMoniker
+                  Id="0bb15048-ba9d-4e72-9c32-a2ceeda990e9"
+                  LastKnownName="Send Missile Fired Event"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <acceptEventAction
+            Id="247ac4c9-a260-4805-817b-f7caa47645c5"
+            name="Miss Launcher Move to Coords"
+            isLeaf="false"
+            isUnmarshall="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="59cceaaf-614d-456d-bae3-a6f67d52aa32"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="efb8914b-455c-4f46-9007-faf6335c71fc"
+                  LastKnownName="Fire Missile"
+                  LastKnownLocation="SkynetTDSModeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </acceptEventAction>
+        </nodes>
+      </activity>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

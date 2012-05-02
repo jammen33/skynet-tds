@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="b7dd3243-dc67-4fe5-8fd2-df3265b1d21c" name="SkynetSequence_creation" linkedPackageId="a20328ef-90c1-417c-9290-ce5b1608e4a3" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="eee50d57-d84c-4eee-ba09-92864bd59a36">
+      <profileInstance Id="a010e11f-f5d1-4996-884f-55e91f3bd3e6" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="c913d507-4f81-44e0-b34a-20ded654881f">
+      <profileInstance Id="30e73b9d-e81f-496c-a949-008bb9104f71" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="8b775aed-fb00-4f66-b72a-0bf74b5b69a7" name="SkynetSequence_creation" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <elementDefinition Id="d1c481f5-a846-4289-8749-8d88e250ccf9" />
+        <lifelines>
+          <lifeline Id="8fedebff-d927-44ba-a1a3-5150a0a25033" name="main" isActor="false" lifelineDisplayName="main">
+            <elementDefinition Id="0e484019-9630-4d73-a59c-d08cb681ae78" />
+          </lifeline>
+        </lifelines>
+      </interaction>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="a20328ef-90c1-417c-9290-ce5b1608e4a3" name="SkynetTDSModeling">
+    <elementDefinition Id="75f5cb4e-ed53-4e92-855e-82390244055e" />
+  </package>
+</SequenceDesignerModel>

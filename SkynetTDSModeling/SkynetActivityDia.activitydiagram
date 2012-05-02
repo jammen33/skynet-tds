@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="4352bc5a-9cc5-431c-8067-c811f7fb67c8" name="SkynetActivityDia" linkedPackageId="41752c28-b26c-4c3d-8e22-384d396e2881" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="e2d69405-26fc-48df-8469-81fd614350a5">
+      <profileInstance Id="7b1b063e-c271-4c6c-b455-aff0fe9f357b" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="869a87eb-0fad-4adf-9cb9-ae1959555f6b">
+      <profileInstance Id="ca7649c8-02a4-49ba-8301-b6dd05bdc637" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="fcff833f-309f-4fd8-8a74-d90fc2c821c6" name="SkynetActivityDia" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="85088aee-28ec-45a9-a8b7-5b0530c909c4" />
+        <nodes>
+          <opaqueAction Id="1c1f0532-4340-4b51-bb82-7352f0d56955" name="Start UI" isLeaf="false">
+            <elementDefinition Id="b82025e9-55f5-4b03-acce-3ba0c8ffa440" />
+            <flowNodeTargets>
+              <controlFlow Id="6643fe08-2413-4598-9abf-3c61d640bba2" isLeaf="false">
+                <forkNodeMoniker Id="c869f45e-d46d-45e9-b5a5-847eab3e189e" LastKnownName="Fork3" />
+                <elementDefinition Id="ecab8e7d-ed12-40f2-b36a-56b0cd0b7aff" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="812a81fa-47d5-4108-9472-297f84b9be2f" name="Select Competition" isLeaf="false">
+            <elementDefinition Id="48fc536e-be4c-4e1e-ab9b-f5e8e0b7e43e" />
+            <flowNodeTargets>
+              <controlFlow Id="b0775e2a-4cfa-4c92-9847-3ec2c4ea7f48" isLeaf="false">
+                <opaqueActionMoniker Id="ab0d37b9-0ac0-41f9-8ed8-a3e969ca6e76" LastKnownName="Start GUI Timer" />
+                <elementDefinition Id="9d9f41ff-cd76-4cbb-8f5f-d0ec03df0038" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <forkNode Id="6176432c-a21d-40fb-b45c-02b0233d039c" name="Fork1" isLeaf="false">
+            <elementDefinition Id="e1ac97ca-ae57-4dec-a14f-44350f768838" />
+            <flowNodeTargets>
+              <controlFlow Id="f6054072-f0d0-48bd-9a38-23131c96d132" isLeaf="false">
+                <opaqueActionMoniker Id="12c82dae-35c6-4265-b7fa-c03f9185b0f6" LastKnownName="Capture Image" />
+                <elementDefinition Id="a4071629-ce3b-4022-9511-e63fd7b66135" />
+              </controlFlow>
+              <controlFlow Id="d2b5ccbd-9c54-46da-872e-18459a8f66ea" isLeaf="false">
+                <acceptEventActionMoniker Id="fedf5d84-45ef-46d1-8a7f-f30888d103fb" LastKnownName="Update GUI" />
+                <elementDefinition Id="15ace392-ac48-418b-a2c9-69a01e206b28" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <opaqueAction Id="1285a79e-18e7-4807-813a-f3b1290b94cf" name="Start WebCam" isLeaf="false">
+            <elementDefinition Id="35ad4432-2274-46c3-ae8a-ee92a392f616" />
+            <flowNodeTargets>
+              <controlFlow Id="2b581466-6152-4a0b-b0c8-2ac9d80550bd" isLeaf="false">
+                <joinNodeMoniker Id="c9dfa58c-0224-4c85-af27-0154bf99d3b5" LastKnownName="Join1" />
+                <elementDefinition Id="180d4dba-d511-4fb7-a1c0-bc1e5a2eceae" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="ab0d37b9-0ac0-41f9-8ed8-a3e969ca6e76" name="Start GUI Timer" isLeaf="false">
+            <elementDefinition Id="2f3b59d2-17b5-4a8e-b4d6-5ea532098204" />
+            <flowNodeTargets>
+              <controlFlow Id="f95540b8-1a1b-4742-8897-d196d1fe4852" isLeaf="false">
+                <forkNodeMoniker Id="6176432c-a21d-40fb-b45c-02b0233d039c" LastKnownName="Fork1" />
+                <elementDefinition Id="4e01a658-b1fc-462b-b5cc-86074218e154" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <initialNode Id="ca5e4686-2a49-415a-8033-4d38ef1b0a3e" name="Initial1" isLeaf="false">
+            <elementDefinition Id="691c8246-09f5-45a4-bbfa-bfae79ccd7d1" />
+            <flowNodeTargets>
+              <controlFlow Id="974f2695-fc5b-4f0c-8693-172d482ea997" isLeaf="false">
+                <opaqueActionMoniker Id="1c1f0532-4340-4b51-bb82-7352f0d56955" LastKnownName="Start UI" />
+                <elementDefinition Id="c3a52646-6440-408f-878b-6fc70b1cdf51" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="12c82dae-35c6-4265-b7fa-c03f9185b0f6" name="Capture Image" isLeaf="false">
+            <elementDefinition Id="817ee3de-0ad7-441c-8b93-c6b22f370862" />
+            <flowNodeTargets>
+              <controlFlow Id="a84427b3-c414-43a7-b00c-95d2bf9ce796" isLeaf="false">
+                <opaqueActionMoniker Id="2f8d52c4-23bf-45b7-bf5f-c0f2dadb07da" LastKnownName="Locate Targets" />
+                <elementDefinition Id="babd2777-8123-45f4-b7fb-888ed50ce6c9" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="2f8d52c4-23bf-45b7-bf5f-c0f2dadb07da" name="Locate Targets" isLeaf="false">
+            <elementDefinition Id="013ae602-76b5-4c3c-a041-301b7b1a99f3" />
+            <flowNodeTargets>
+              <controlFlow Id="fe3ec8e3-637e-4f40-a6ef-646a5e0782d9" isLeaf="false">
+                <opaqueActionMoniker Id="54ccea90-b6df-42ff-9b14-ca29b369fba6" LastKnownName="Get Target Coords" />
+                <elementDefinition Id="e594e835-7182-46fd-96d4-cef5b1e4064d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="54ccea90-b6df-42ff-9b14-ca29b369fba6" name="Get Target Coords" isLeaf="false">
+            <elementDefinition Id="5378e412-f625-4fb8-9f62-85e4e963fdd1" />
+            <flowNodeTargets>
+              <controlFlow Id="9b4b4235-a102-4fff-8202-b1345a59f2cb" isLeaf="false">
+                <opaqueActionMoniker Id="df4960c1-5913-4c25-92fe-f408052ff952" LastKnownName="Miss Launcher Move to Coords" />
+                <elementDefinition Id="d60d4cd4-73f6-45a7-a02f-8b46d5f66d86" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <sendSignalAction Id="b29edfbd-0bbe-46ab-b49a-cd36b6341962" name="Send Missile Fired Event" isLeaf="false">
+            <elementDefinition Id="0bb15048-ba9d-4e72-9c32-a2ceeda990e9" />
+            <flowNodeTargets>
+              <controlFlow Id="0546c2c6-4a81-48e0-88a0-e505d1473fe9" isLeaf="false">
+                <acceptEventActionMoniker Id="fedf5d84-45ef-46d1-8a7f-f30888d103fb" LastKnownName="Update GUI" />
+                <elementDefinition Id="a7e2fc9c-0e7b-4483-9a12-9e957184da95" />
+              </controlFlow>
+              <controlFlow Id="020b6497-deaa-42a5-b4a8-1232508be9e6" isLeaf="false">
+                <acceptEventActionMoniker Id="62de70d6-556f-4fc0-9aa0-b82625040edb" LastKnownName="Miss Launcher Move to Coords" />
+                <elementDefinition Id="c0ccc7b2-8822-46bc-8c6e-c11a4d8ee222" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <opaqueAction Id="df4960c1-5913-4c25-92fe-f408052ff952" name="Miss Launcher Move to Coords" isLeaf="false">
+            <elementDefinition Id="7690219d-1213-40c3-bf43-0bca46b21405" />
+            <flowNodeTargets>
+              <controlFlow Id="330aa992-96e4-4081-af82-1f357c67536c" isLeaf="false">
+                <opaqueActionMoniker Id="124d1a67-a8df-4eb6-8147-d1ef0eed16c3" LastKnownName="Fire Missile" />
+                <elementDefinition Id="6a590885-0d7a-4e1f-82c5-d1d15e5ceb9a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="d3d06708-9ec7-4df3-acd7-c2da54ee14c3" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="f4d052d1-d59b-488d-b27f-c26b7a8b98b0" />
+          </activityFinalNode>
+          <opaqueAction Id="124d1a67-a8df-4eb6-8147-d1ef0eed16c3" name="Fire Missile" isLeaf="false">
+            <elementDefinition Id="efb8914b-455c-4f46-9007-faf6335c71fc" />
+            <flowNodeTargets>
+              <controlFlow Id="c7743376-dce7-45e0-9eaf-76f1e7cf67c7" isLeaf="false">
+                <opaqueActionMoniker Id="5593a5c7-ae9d-4890-b75a-06778fdd2e11" LastKnownName="Decrement Missile Count" />
+                <elementDefinition Id="c8b6e3e2-96bf-45c9-a192-c55be1a1fcff" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <joinNode Id="c9dfa58c-0224-4c85-af27-0154bf99d3b5" name="Join1" isLeaf="false">
+            <elementDefinition Id="ab7037e6-ee90-4a60-876c-6a588bedda56" />
+            <flowNodeTargets>
+              <controlFlow Id="16c26d60-d434-4dc1-9c64-9de835b28cb1" isLeaf="false">
+                <activityFinalNodeMoniker Id="d3d06708-9ec7-4df3-acd7-c2da54ee14c3" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="bec22adb-1338-4f33-8745-1e0f1088e644" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+          <forkNode Id="c869f45e-d46d-45e9-b5a5-847eab3e189e" name="Fork3" isLeaf="false">
+            <elementDefinition Id="5f2ee9fa-4b5c-4fd6-8cff-c44696528a11" />
+            <flowNodeTargets>
+              <controlFlow Id="1d3fda5c-bccc-4365-9e07-e4814492db17" isLeaf="false">
+                <opaqueActionMoniker Id="1285a79e-18e7-4807-813a-f3b1290b94cf" LastKnownName="Start WebCam" />
+                <elementDefinition Id="aa2fe635-1fc5-4987-9321-35077289ed98" />
+              </controlFlow>
+              <controlFlow Id="ea10b1cb-bc78-429d-8fe9-6ba7aaae4746" isLeaf="false">
+                <opaqueActionMoniker Id="812a81fa-47d5-4108-9472-297f84b9be2f" LastKnownName="Select Competition" />
+                <elementDefinition Id="39aeb492-49fe-4459-8935-7a2c5a8b53f6" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <acceptEventAction Id="fedf5d84-45ef-46d1-8a7f-f30888d103fb" name="Update GUI" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="e5d9d4e1-c66a-488e-9c23-564cc00897aa" />
+            <flowNodeTargets>
+              <controlFlow Id="d7ebecf0-2f9b-4f2e-b8f8-1274e1da713e" isLeaf="false">
+                <joinNodeMoniker Id="c9dfa58c-0224-4c85-af27-0154bf99d3b5" LastKnownName="Join1" />
+                <elementDefinition Id="69fa3e76-5ac1-4dbf-bf23-630d0b248017" />
+              </controlFlow>
+            </flowNodeTargets>
+          </acceptEventAction>
+          <opaqueAction Id="5593a5c7-ae9d-4890-b75a-06778fdd2e11" name="Decrement Missile Count" isLeaf="false">
+            <elementDefinition Id="d7fa9962-432d-4ff0-85e4-23612173f047" />
+            <flowNodeTargets>
+              <controlFlow Id="008ebdc7-5a1b-4072-be18-8f3ee20a58db" isLeaf="false">
+                <sendSignalActionMoniker Id="b29edfbd-0bbe-46ab-b49a-cd36b6341962" LastKnownName="Send Missile Fired Event" />
+                <elementDefinition Id="81f1bb77-36c6-4de0-8efd-d9ed5624671a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <acceptEventAction Id="62de70d6-556f-4fc0-9aa0-b82625040edb" name="Miss Launcher Move to Coords" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="247ac4c9-a260-4805-817b-f7caa47645c5" />
+            <flowNodeTargets>
+              <controlFlow Id="c43d75d7-9c00-4482-a3fa-9d6ad64c2c2f" isLeaf="false">
+                <opaqueActionMoniker Id="124d1a67-a8df-4eb6-8147-d1ef0eed16c3" LastKnownName="Fire Missile" />
+                <elementDefinition Id="59cceaaf-614d-456d-bae3-a6f67d52aa32" />
+              </controlFlow>
+            </flowNodeTargets>
+          </acceptEventAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="41752c28-b26c-4c3d-8e22-384d396e2881" name="SkynetTDSModeling">
+    <elementDefinition Id="75f5cb4e-ed53-4e92-855e-82390244055e" />
+  </package>
+</activityRootModel>
