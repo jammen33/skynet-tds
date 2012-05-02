@@ -26,5 +26,22 @@ namespace SkynetTDS.Controller
         {
             throw new NotImplementedException();
         }
+
+
+        public event EventHandler MissileFired;
+
+
+        public event EventHandler<FoundTatgetEventArgs> FoundTargets;
+
+
+        public void calibrateLauncher()
+        {
+            throw new NotImplementedException();
+        }
+
+        public event EventHandler OutOfMissiles;
+
+
+        public event EventHandler EventTerminated;
     }
 }

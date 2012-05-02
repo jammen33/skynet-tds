@@ -21,12 +21,38 @@ namespace SkynetTDS.Vision
         /// Object for synchronizing
         /// </summary>
         private object m_lockObject;
-
+        
+        #region Events
         public event EventHandler<ImageDeviceArgs> ImageCaptured;
-
         public event EventHandler CameraStarted;
-
         public event EventHandler CameraStopped;
+
+        private void onStart(EventArgs e)
+        {
+            EventHandler cameraStarted = CameraStarted;
+            if (cameraStarted != null)
+            {
+                cameraStarted(this, e);
+            }
+        }
+        private void onCapture(ImageDeviceArgs e)
+        {
+            EventHandler<ImageDeviceArgs> imageCaptured = ImageCaptured;
+            if (imageCaptured != null)
+            {
+                imageCaptured(this, e);
+            }
+        }
+        private void onStop(EventArgs e)
+        {
+            EventHandler cameraStopped = CameraStopped;
+            if (cameraStopped != null)
+            {
+                cameraStopped(this, e);
+            }
+        }
+
+        #endregion
 
         public VisionDevice()
         {
@@ -58,12 +84,7 @@ namespace SkynetTDS.Vision
                 captureThreadStart = new ThreadStart(captureLoop);
                 captureThread = new Thread(captureThreadStart);
                 captureThread.Start();
-                EventArgs e = new EventArgs();
-                EventHandler cameraStarted = CameraStarted;
-                if (cameraStarted != null)
-                {
-                    cameraStarted(this, e);
-                }
+                onStart(new EventArgs());
                 isCapturing = true;
             }
         }
@@ -76,12 +97,7 @@ namespace SkynetTDS.Vision
             if (isCapturing)
             {
                 captureThread.Abort();
-                EventArgs e = new EventArgs();
-                EventHandler cameraStopped = CameraStopped;
-                if (cameraStopped != null)
-                {
-                    cameraStopped(this, e);
-                }
+                onStop(new EventArgs());
                 isCapturing = false;
             }
         }
@@ -92,7 +108,7 @@ namespace SkynetTDS.Vision
         /// <returns>The last image.</returns>
         public Image GetImage()
         {
-            lock (m_lockObject)
+            lock (img)
             {
                 return img;
             }
@@ -108,18 +124,18 @@ namespace SkynetTDS.Vision
 
         private void captureLoop()
         {
+            img = capture.QueryFrame().Copy().ToBitmap();   //so img isn'y null for the lock
+            ImageDeviceArgs e;
             while (true)
             {
-                lock (m_lockObject)
+                
+                lock (img)
                 {
-                    img = capture.QueryFrame().ToBitmap();
-                }
-                ImageDeviceArgs e = new ImageDeviceArgs(img);
-                EventHandler<ImageDeviceArgs> imageCaptured = ImageCaptured;
-                if (imageCaptured != null)
-                {
-                    imageCaptured(this, e);
-                }
+                    img = capture.QueryFrame().Copy().ToBitmap();
+                    e = new ImageDeviceArgs(img);
+                }    
+            
+                onCapture(e);
             }
         }
     }

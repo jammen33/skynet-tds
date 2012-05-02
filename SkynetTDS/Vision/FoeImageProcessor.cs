@@ -17,10 +17,10 @@ namespace SkynetTDS.Vision
     {
         Collection<Target> targets;
         Image<Bgr, Byte> img;
-        float resolution = 2;
-        int minDistance = 10;
-        int minRadius = 0;
-        int maxRadius = 0;
+        float resolution = 5;
+        int minDistance = 70;
+        int minRadius = 30;
+        int maxRadius = 40;
 
         public FoeImageProcessor()
         {

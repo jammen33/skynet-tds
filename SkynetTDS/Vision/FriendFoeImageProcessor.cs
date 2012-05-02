@@ -15,27 +15,35 @@ using Emgu.Util;
 
 namespace SkynetTDS.Vision
 {
+    
     class FriendFoeImageProcessor : IImageProcessor
     {
         Collection<Target> targets;
         Image<Bgr, Byte> img;
-        float resolution = 2;
-        int minDistance = 10;
-        int minRadius = 0;
-        int maxRadius = 0;
+        float resolution = 5;
+        int minDistance = 70;
+        int minRadius = 30;
+        int maxRadius = 40;
         int centerThreshold = 10;
 
         public Collection<Target> DetectTargets(Image image)
         {
-            Bitmap bmpImage = new Bitmap(image);
-            img = new Image<Bgr, byte>(bmpImage);
+            lock (image)
+            {
+                img = new Image<Bgr, byte>(new Bitmap((Image)image.Clone()));
+            }
+            targets = new Collection<Target>();
+            //img = new Image<Bgr, byte>("NewCircleTest.png").Resize(610, 360, INTER.CV_INTER_LINEAR);
             findFoes();
             findFriends();
+            img.Dispose();
+            
             return targets;
         }
 
         private void findFoes()
         {
+            bool ok = true;
             Target tmpTarget;
             //Convert the image to grayscale and filter out the noise
             Image<Gray, Byte> gray = img.Copy().Convert<Gray, Byte>().PyrDown().PyrUp();
@@ -55,18 +63,32 @@ namespace SkynetTDS.Vision
 
             foreach (CircleF circle in circles)
             {
-                Bgr color = img[(int)circle.Center.Y, (int)circle.Center.X];
-                if (color.Red > color.Blue && color.Red > color.Green)
+                foreach (Target t in targets)
                 {
-                    tmpTarget = new Target();
+                    if (Math.Abs(circle.Center.X - t.Point.X) < centerThreshold)
+                    {
+                        ok = false;
+                    }
+                }
+                if (ok)
+                {
+                    Bgr color = img[(int)circle.Center.Y, (int)circle.Center.X];
+                    if (color.Red > color.Blue && color.Red > color.Green && color.Red > 150)
+                    {
+                        tmpTarget = new Target();
 
-                    tmpTarget.Color = Color.Red;
-                    tmpTarget.IsFriend = false;
-                    tmpTarget.Point = circle.Center;
-                    tmpTarget.Distance = 0;
-                    tmpTarget.IsMoving = false;
+                        tmpTarget.Color = Color.Red;
+                        tmpTarget.IsFriend = false;
+                        tmpTarget.Point = circle.Center;
+                        tmpTarget.Distance = 0;
+                        tmpTarget.IsMoving = false;
 
-                    targets.Add(tmpTarget);
+                        targets.Add(tmpTarget);
+                    }
+                }
+                else
+                {
+                    ok = true;
                 }
             }
         }
@@ -74,6 +96,7 @@ namespace SkynetTDS.Vision
         private void findFriends()
         {
             Target tmpTarget;
+            bool ok = true;
             //Convert the image to grayscale and filter out the noise
             Image<Gray, Byte> gray = img.Copy().Convert<Gray, Byte>().PyrDown().PyrUp();
 
@@ -184,24 +207,36 @@ namespace SkynetTDS.Vision
                 #region draw circles
                 foreach (CircleF circle in circles)
                 {
-                    Bgr color = img[(int)circle.Center.Y, (int)circle.Center.X];
-                    if (color.Green > color.Blue && color.Green > color.Red)
+                    foreach (Target t in targets)
                     {
-                        tmpTarget = new Target();
+                        if (Math.Abs(circle.Center.X - t.Point.X) < centerThreshold)
+                        {
+                            ok = false;
+                        }
+                    }
+                    if (ok)
+                    {
+                        Bgr color = img[(int)circle.Center.Y, (int)circle.Center.X];
+                        if (color.Green > color.Blue && color.Green > color.Red && color.Green > 150)
+                        {
+                            tmpTarget = new Target();
 
-                        tmpTarget.Color = Color.Green;
-                        tmpTarget.IsFriend = true;
-                        tmpTarget.Point = circle.Center;
-                        tmpTarget.Distance = 0;
-                        tmpTarget.IsMoving = false;
+                            tmpTarget.Color = Color.Green;
+                            tmpTarget.IsFriend = true;
+                            tmpTarget.Point = circle.Center;
+                            tmpTarget.Distance = 0;
+                            tmpTarget.IsMoving = false;
 
-                        targets.Add(tmpTarget);
+                            targets.Add(tmpTarget);
+                        }
+                    }
+                    else
+                    {
+                        ok = true;
                     }
                 }
 
                 #endregion
-
-                gray = null;
             }
         }
     }
