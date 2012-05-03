@@ -235,11 +235,13 @@ namespace SkynetTDS.Userinterface
             if (vision != null)
             {
                 vision.Stop();
+                vision = null;
             }
             if (controller != null)
             {
                 //force the thread to die
                 controller.emergencyStop();
+                controller = null;
             }
         }
     }

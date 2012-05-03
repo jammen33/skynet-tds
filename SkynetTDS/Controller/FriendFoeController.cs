@@ -29,7 +29,7 @@ namespace SkynetTDS.Controller
         public FriendFoeController()
         {
             launcher = new LauncherController();
-            numberOfMissiles = 8;
+            numberOfMissiles = 4;
             launcher.MissileFired += new EventHandler(launcherFired);
             vision = VisionDevice.getInstance();
             processor = new FriendFoeImageProcessor();
@@ -76,7 +76,11 @@ namespace SkynetTDS.Controller
 
         public void emergencyStop()
         {
-            controllerThread.Abort();
+            if (controllerThread.IsAlive)
+            {
+                controllerThread.Abort();
+            }
+            
             shouldRun = false;
             isRunning = false;
             onEventTerminated(new EventArgs());
