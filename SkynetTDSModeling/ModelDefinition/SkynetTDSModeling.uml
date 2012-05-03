@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="75f5cb4e-ed53-4e92-855e-82390244055e"
   name="SkynetTDSModeling" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -144,6 +144,45 @@
                 <memberEnd
                   Id="d114933a-3a91-4d48-895d-60304254bdeb"
                   name="IEventControllerCreator"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="90fbe970-8eac-4c88-ba0e-00a8a7852893"
+            isDerived="false"
+            sourceEndRoleName="Form"
+            targetEndRoleName="IVisionDevice"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="f1e2a44e-58f4-42b7-a0fc-94ab71c79c2c"
+              LastKnownName="IVisionDevice"
+              LastKnownLocation="SkynetTDSModeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e2e15f82-2976-45b5-8f27-320600ed22aa"
+                  name="Form"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9199dc9f-bbdd-41e0-8452-a3ae459a2d63"
+                  name="IVisionDevice"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -379,6 +418,45 @@
                 <memberEnd
                   Id="2fd0201c-de8f-4a58-a878-e27f7afd0b21"
                   name="ILauncherController"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="db14c618-846b-49da-aef7-32f3dbc61f3f"
+            isDerived="false"
+            sourceEndRoleName="FriendFoeController"
+            targetEndRoleName="IVisionDevice"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="f1e2a44e-58f4-42b7-a0fc-94ab71c79c2c"
+              LastKnownName="IVisionDevice"
+              LastKnownLocation="SkynetTDSModeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="12564b8f-ef10-4291-815b-b81ceb347c42"
+                  name="FriendFoeController"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="dd85877f-7a3c-4e0c-b353-6dcc8bbf6f90"
+                  name="IVisionDevice"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -2328,6 +2406,45 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="6955e782-42a5-45c6-a9b3-56185daa3f69"
+            isDerived="false"
+            sourceEndRoleName="FoeController"
+            targetEndRoleName="IVisionDevice"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="f1e2a44e-58f4-42b7-a0fc-94ab71c79c2c"
+              LastKnownName="IVisionDevice"
+              LastKnownLocation="SkynetTDSModeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="354702f5-3c86-4609-a94e-af8b26a61713"
+                  name="FoeController"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="84eb25cc-b0f0-4986-a20b-3448f1762731"
+                  name="IVisionDevice"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </class>
     </packageHasNamedElement>
@@ -2425,6 +2542,63 @@
         name="ILauncher"
         isAbstract="false"
         isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="f1e2a44e-58f4-42b7-a0fc-94ab71c79c2c"
+        name="IVisionDevice"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="116640e8-e3b0-43fd-bef2-470aa15c62cd"
+            isDerived="false"
+            sourceEndRoleName="IVisionDevice"
+            targetEndRoleName="VisionDevice"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="7e5d4930-4407-4363-b2b2-8102d601ef91"
+              LastKnownName="VisionDevice"
+              LastKnownLocation="SkynetTDSModeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e21c87f6-df58-40c1-aa13-10fd2c4427a7"
+                  name="IVisionDevice"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5ba3aa9e-c2ac-49cd-9a7e-213275c84164"
+                  name="VisionDevice"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="7e5d4930-4407-4363-b2b2-8102d601ef91"
+        name="VisionDevice"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
