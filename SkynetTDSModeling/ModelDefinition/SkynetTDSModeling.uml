@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="75f5cb4e-ed53-4e92-855e-82390244055e"
   name="SkynetTDSModeling" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -203,6 +203,45 @@
                 <memberEnd
                   Id="f846ed8d-ff8f-4df3-abb2-93bb963fcc0f"
                   name="FriendFoeController"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="fb96ad98-57bc-49d3-804c-e5ee49aed625"
+            isDerived="false"
+            sourceEndRoleName="ConcreteEventCreator"
+            targetEndRoleName="FoeController"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="df3ac6cd-4f00-4b1d-98b0-5b37c15a73d9"
+              LastKnownName="FoeController"
+              LastKnownLocation="SkynetTDSModeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ff486aae-0965-4471-9842-9c033de4dcc7"
+                  name="ConcreteEventCreator"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9be6f206-3e53-4dca-b6bc-686ea8506adb"
+                  name="FoeController"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -2193,6 +2232,104 @@
           </acceptEventAction>
         </nodes>
       </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="df3ac6cd-4f00-4b1d-98b0-5b37c15a73d9"
+        name="FoeController"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="a7c881d4-34e6-4f36-a631-44ef82aeefaa">
+            <interfaceMoniker
+              Id="c4d90815-c3d8-4557-b36e-663aefe9709b"
+              LastKnownName="IEventController"
+              LastKnownLocation="SkynetTDSModeling.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="3432c50f-4bd6-4b1d-b6e7-98d03bb2546d"
+            isDerived="false"
+            sourceEndRoleName="FoeController"
+            targetEndRoleName="ILauncher"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="f3b3e2dc-398a-46b3-9662-9d35ec25aeea"
+              LastKnownName="ILauncher"
+              LastKnownLocation="SkynetTDSModeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="68fab180-b797-4d5d-847f-5caaaaf72083"
+                  name="FoeController"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="11f6a52f-e7c5-49af-949f-a090983cc03d"
+                  name="ILauncher"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="8a3eee99-9df7-45d4-9a7f-21cf38ecdad9"
+            isDerived="false"
+            sourceEndRoleName="FoeController"
+            targetEndRoleName="IImageProcessor"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="6dd4f644-902d-47ea-abb0-5676225393a6"
+              LastKnownName="IImageProcessor"
+              LastKnownLocation="SkynetTDSModeling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f89d0d7c-546e-480c-bcef-a6652a181dda"
+                  name="FoeController"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="43b970d7-b0cf-49a8-b4e8-756e276ea123"
+                  name="IImageProcessor"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

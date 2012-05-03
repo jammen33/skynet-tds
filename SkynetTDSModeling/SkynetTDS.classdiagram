@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" dslVersion="1.0.0.0" Id="453effda-0b61-46a5-afca-04f06e1a262e" name="SkynetTDS" linkedPackageId="f768741b-1b5c-463d-9be9-fca27eddb21a" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="453effda-0b61-46a5-afca-04f06e1a262e" name="SkynetTDS" linkedPackageId="f768741b-1b5c-463d-9be9-fca27eddb21a" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="90297ca3-f03a-4e79-bc28-4ea55452c837" name="Program" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -89,6 +89,22 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="e8c28bc1-31cf-40f4-884f-202c99954f76" />
           </association>
+          <association Id="27d66c23-8d34-4f1a-aebb-a2d1ac658439" isDerived="false" sourceEndRoleName="ConcreteEventCreator" targetEndRoleName="FoeController" isLeaf="false" isAbstract="false">
+            <classMoniker Id="c87f4469-8545-47a9-8df6-37d0055e7627" LastKnownName="FoeController" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c4f291f7-8d0a-4456-b06c-b97ca12dae98" name="ConcreteEventCreator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ff486aae-0965-4471-9842-9c033de4dcc7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c26a915f-cd8f-4219-89e6-cf6d6ce7e3ef" name="FoeController" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="9be6f206-3e53-4dca-b6bc-686ea8506adb" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="fb96ad98-57bc-49d3-804c-e5ee49aed625" />
+          </association>
         </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -117,22 +133,6 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="e3d1fede-9382-44e3-bca0-b52829df8556" />
-          </association>
-          <association Id="eb349e4e-676f-4363-a2dd-1e2592bb1858" isDerived="false" sourceEndRoleName="FriendFoeController" targetEndRoleName="IImageProcessCreator" isLeaf="false" isAbstract="false">
-            <interfaceMoniker Id="6ca94872-9ce0-4b7f-8516-b0815e4d0124" LastKnownName="IImageProcessCreator" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="ce6e16f1-e69c-43ea-91af-0015fbbac69f" name="FriendFoeController" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="b9a0133b-97e5-44c0-8970-bc66fce4bb6d" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="49cbd3fb-b75f-4797-bfd3-f08b451ec36b" name="IImageProcessCreator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="abb92af1-7009-42db-bd02-1da24bd1189f" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="0515ad7c-8d15-4618-8298-7fc921551709" />
           </association>
           <association Id="23310035-c82a-4f8e-a96d-0f6a007573c4" isDerived="false" sourceEndRoleName="FriendFoeController" targetEndRoleName="ILauncherController" isLeaf="false" isAbstract="false">
             <interfaceMoniker Id="fe9f46e0-4132-413c-8825-f28e3b85b5c8" LastKnownName="ILauncher" />
@@ -166,56 +166,6 @@
     <logicalClassDesignerModelHasTypes>
       <Interface Id="c1e644ad-593c-4f8c-9655-abf05394b96e" name="IImageProcessor" isAbstract="false" isLeaf="false">
         <elementDefinition Id="6dd4f644-902d-47ea-abb0-5676225393a6" />
-      </Interface>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="c5008c3f-7f55-4894-98ea-a6267c2bb72f" name="ImageProcessCreator" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="5312ce4e-3696-48c4-986f-8a4b70aea9ad" />
-        <suppliersInternal>
-          <interfaceRealization Id="524e0cbd-210e-4511-b5db-f5b8362e7daa">
-            <interfaceMoniker Id="6ca94872-9ce0-4b7f-8516-b0815e4d0124" LastKnownName="IImageProcessCreator" />
-            <elementDefinition Id="062197ca-e968-4f2c-8e36-b95a1215c594" />
-          </interfaceRealization>
-        </suppliersInternal>
-        <targetEnds>
-          <association Id="37950df3-3103-4680-b22e-ec05366cc2f2" isDerived="false" sourceEndRoleName="ImageProcessCreator" targetEndRoleName="FriendFoe" isLeaf="false" isAbstract="false">
-            <classMoniker Id="a441fa1a-269b-4147-bd91-2deb5a98c0eb" LastKnownName="FriendFoeProcessor" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="a0f6672a-a4ee-45e6-a19a-80800f9b138b" name="ImageProcessCreator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="18e3658a-5698-42e3-8748-1172bc2a44e8" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="03447ce3-caef-4602-9584-ddd5695e4bed" name="FriendFoe" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="a4c11888-499c-4799-aebc-4491e4adad47" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="062618dd-1b65-4d9c-a504-4249afd3b995" />
-          </association>
-          <association Id="9d084ffe-0e03-4bcb-a05b-5b7877a17d70" isDerived="false" sourceEndRoleName="ImageProcessCreator" targetEndRoleName="Foe" isLeaf="false" isAbstract="false">
-            <classMoniker Id="01b1252d-a1a2-4a95-8df7-926d3b0f7355" LastKnownName="FoeProcessor" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="86f4ef71-08b5-42d3-bb4d-a23e67014483" name="ImageProcessCreator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="115554ac-b6e1-488b-9b2c-f4d1d8825ac6" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="ea41af28-f134-4829-9114-f8f3d286b75f" name="Foe" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="db6b6c43-7b47-4fe3-a260-4156806037ff" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="1ddcedef-89c9-411f-bb11-2af35c8f12ea" />
-          </association>
-        </targetEnds>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <Interface Id="6ca94872-9ce0-4b7f-8516-b0815e4d0124" name="IImageProcessCreator" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="67f974fb-9ccd-4683-95e0-1cbd566b4e35" />
       </Interface>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -259,6 +209,51 @@
             <elementDefinition Id="c4b99372-db2e-42bd-a0b3-a7831c9b8976" />
           </interfaceRealization>
         </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="c87f4469-8545-47a9-8df6-37d0055e7627" name="FoeController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="df3ac6cd-4f00-4b1d-98b0-5b37c15a73d9" />
+        <suppliersInternal>
+          <interfaceRealization Id="49a29939-6e92-4f8f-9651-017dc0c1d19a">
+            <interfaceMoniker Id="90600d97-93ee-40ec-8086-b5cada45ecc7" LastKnownName="IEventController" />
+            <elementDefinition Id="a7c881d4-34e6-4f36-a631-44ef82aeefaa" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="4363b4b9-961a-4ebb-8ae0-afe9b5e6556f" isDerived="false" sourceEndRoleName="FoeController" targetEndRoleName="ILauncher" isLeaf="false" isAbstract="false">
+            <interfaceMoniker Id="fe9f46e0-4132-413c-8825-f28e3b85b5c8" LastKnownName="ILauncher" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="11ce4881-7426-469b-9c0d-2bebbf69f1ae" name="FoeController" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="68fab180-b797-4d5d-847f-5caaaaf72083" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4d984e9c-2fda-405c-a256-8a6c23f4ca72" name="ILauncher" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="11f6a52f-e7c5-49af-949f-a090983cc03d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="3432c50f-4bd6-4b1d-b6e7-98d03bb2546d" />
+          </association>
+          <association Id="7210f910-8bb9-40a3-ad79-209fc9f4a102" isDerived="false" sourceEndRoleName="FoeController" targetEndRoleName="IImageProcessor" isLeaf="false" isAbstract="false">
+            <interfaceMoniker Id="c1e644ad-593c-4f8c-9655-abf05394b96e" LastKnownName="IImageProcessor" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="28383335-f9e5-436b-8862-8a7c79fb8b46" name="FoeController" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f89d0d7c-546e-480c-bcef-a6652a181dda" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8d827dff-66d4-4b5d-b2de-23477c494f76" name="IImageProcessor" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="43b970d7-b0cf-49a8-b4e8-756e276ea123" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="8a3eee99-9df7-45d4-9a7f-21cf38ecdad9" />
+          </association>
+        </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>
