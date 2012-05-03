@@ -31,11 +31,9 @@ namespace SkynetTDS.Userinterface
         delegate void setCountsCallBack();
         delegate void changeButtons( bool start, bool stop, bool estop);
 
-        int eventType;
         int numberOfMissiles;
         int numberOfFoes;
         int numberOfFriends;
-        bool isEvent;
 
         public UserInterface()
         {
@@ -45,23 +43,9 @@ namespace SkynetTDS.Userinterface
             stopEvent.Enabled = false;
             estop.Enabled = false;
             numberOfMissiles = 4;
-            isEvent = false;
 
-            //set up controller
-            controllerCreator = new EventControllerCreator();
-            controller = controllerCreator.createEventController(showEventSelect());
-            controller.calibrateLauncher();
-            controller.FoundTargets += new EventHandler<FoundTatgetEventArgs>(targetsFound);
-            controller.MissileFired += new EventHandler(missileFired);
-            controller.EventTerminated += new EventHandler(eventTerminated);
-            controller.OutOfMissiles += new EventHandler(outOfMissiles);
-
-            //set up camera
-            vision = VisionDevice.getInstance();
-            vision.Start();
-            vision.CameraStarted += new EventHandler(captureStarted);
-            vision.ImageCaptured += new EventHandler<ImageDeviceArgs>(updatIimage);
-            vision.CameraStopped += new EventHandler(captureStopped);
+            startVideo();
+            setUpController();
 
             //initalize missile count
             missileCount.Text = numberOfMissiles.ToString();
@@ -83,12 +67,45 @@ namespace SkynetTDS.Userinterface
             return -1;
         }
 
+        /// <summary>
+        /// Initailizes the carmera and starts continueus image capture
+        /// </summary>
+        private void startVideo()
+        {
+            vision = VisionDevice.getInstance();
+            vision.Start();
+            vision.CameraStarted += new EventHandler(captureStarted);
+            vision.ImageCaptured += new EventHandler<ImageDeviceArgs>(updatIimage);
+            vision.CameraStopped += new EventHandler(captureStopped);
+        }
+
+        /// <summary>
+        /// Ask the user to select an event and creates the controller object
+        /// </summary>
+        private void setUpController()
+        {
+            controllerCreator = new EventControllerCreator();
+            controller = controllerCreator.createEventController(showEventSelect());
+            controller.calibrateLauncher();
+            controller.FoundTargets += new EventHandler<FoundTatgetEventArgs>(targetsFound);
+            controller.MissileFired += new EventHandler(missileFired);
+            controller.EventTerminated += new EventHandler(eventTerminated);
+            controller.OutOfMissiles += new EventHandler(outOfMissiles);
+
+        }
+
 
         public void captureStarted( object sender, EventArgs e )
         {
            
         }
-       
+
+        /// <summary>
+        /// Draws targets to the image and displays it to the screen.
+        /// if there are no targets it simply displays the image.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void updatIimage(object sender, ImageDeviceArgs e)
         {
             lock (e.Frame)
@@ -121,11 +138,6 @@ namespace SkynetTDS.Userinterface
 
         }
 
-/*        private void eventTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            eventType = eventTypeComboBox.SelectedIndex;
-        }
-        */
         private void StartEvent_Click(object sender, EventArgs e)
         {
             stopEvent.Enabled = true;
@@ -135,26 +147,7 @@ namespace SkynetTDS.Userinterface
             controller.startEvent();
         }
 
-        private void targetsFound( object sender, FoundTatgetEventArgs e)
-        {
-            lock(this)
-            {
-                numberOfFoes = e.FoeCount;
-                numberOfFriends = e.FriendCount;
-                targets = e.targets;
-
-            if(this.foeCount.InvokeRequired || this.friendCount.InvokeRequired)
-            {
-                setCountsCallBack d = new setCountsCallBack(setFriendFoeCounts);
-                    this.Invoke(d, new object[] {});      
-
-                } else 
-                {
-                    setFriendFoeCounts();
-                }
-            }
-
-        }
+       
         private void setButtonEnabled( bool start, bool stop, bool estp )
         {
             stopEvent.Enabled = stop;
@@ -201,21 +194,50 @@ namespace SkynetTDS.Userinterface
                 }
             }
         }
-        #endregion
 
+        private void targetsFound(object sender, FoundTatgetEventArgs e)
+        {
+            lock (this)
+            {
+                numberOfFoes = e.FoeCount;
+                numberOfFriends = e.FriendCount;
+                targets = e.targets;
+
+                if (this.foeCount.InvokeRequired || this.friendCount.InvokeRequired)
+                {
+                    setCountsCallBack d = new setCountsCallBack(setFriendFoeCounts);
+                    this.Invoke(d, new object[] { });
+
+                }
+                else
+                {
+                    setFriendFoeCounts();
+                }
+            }
+
+        }
 
         void setMissileCount(string text)
         {
             missileCount.Text = text;
         }
+
         void setFriendFoeCounts()
         {
             friendCount.Text = numberOfFriends.ToString();
             foeCount.Text = numberOfFoes.ToString();
         }
 
+
+        #endregion
+
+        #region controller control
         private void stopEvent_Click(object sender, EventArgs e)
         {
+            stopEvent.Enabled = false;
+            estop.Enabled = false;
+            StartEvent.Enabled = true;
+
             if (controller != null)
             {
                 controller.stopEvent();
@@ -224,11 +246,16 @@ namespace SkynetTDS.Userinterface
 
         private void estop_Click(object sender, EventArgs e)
         {
+            stopEvent.Enabled = false;
+            estop.Enabled = false;
+            StartEvent.Enabled = true;
             if (controller != null)
             {
                 controller.emergencyStop();
             }
         }
+
+        #endregion
 
         private void UserInterface_FormClosed(Object sender, FormClosedEventArgs e)
         {

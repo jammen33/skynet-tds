@@ -89,6 +89,15 @@ namespace SkynetTDS.Vision
             }
         }
 
+        protected void Dispose(bool disposing)
+        {
+            if (isCapturing)
+            {
+                captureThread.Abort();
+                onStop(new EventArgs());
+                isCapturing = false;
+            }
+        }
         /// <summary>
         /// Stops the camera if in continuous mode.
         /// </summary>

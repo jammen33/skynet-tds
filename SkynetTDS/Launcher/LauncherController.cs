@@ -28,9 +28,13 @@ namespace SkynetTDS.Launchers
             //Initialize launcher and reset the position to the base coordinates
             launcher = new MissileLauncher();
         }
-        ~LauncherController()
+
+        protected void Dispose(bool disposing)
         {
-            launcher.command_switchLED(false);
+            if (disposing)
+            {
+                launcher.command_switchLED(false);
+            }
         }
 
         #region Functions

@@ -22,8 +22,14 @@ namespace SkynetTDS.Controller
         Image img;
         Collection<Target> targets;
 
+
+        public int numberOfMissiles
+        {
+            get;
+            private set;
+        }
         bool shouldRun;
-        int numberOfMissiles;
+
         bool isRunning;
 
         public FriendFoeController()
@@ -35,13 +41,29 @@ namespace SkynetTDS.Controller
             processor = new FriendFoeImageProcessor();
             isRunning = false;
         }
+
         ~FriendFoeController()
         {
-            vision = null;
-            launcher = null;
-            if (controllerThread.IsAlive)
+
+                vision = null;
+                launcher = null;
+                if (controllerThread.IsAlive)
+                {
+                    controllerThread.Abort();
+
+                }
+        }
+        protected void Dispose(bool disposing)
+        {
+            if (disposing)
             {
-                controllerThread.Abort();
+                vision = null;
+                launcher = null;
+                if (controllerThread.IsAlive)
+                {
+                    controllerThread.Abort();
+
+                }
             }
         }
 
@@ -121,7 +143,7 @@ namespace SkynetTDS.Controller
                     {
                         lock (this)
                         {
-                            launcher.MoveAbsolute((int)((t.Point.X - (img.Width / 2)) * 1.5), (int)((img.Height / 2) - t.Point.Y), 0);
+                            launcher.MoveAbsolute((int)((t.Point.X - (img.Width / 2)) * 1.5), (int)((img.Height) - t.Point.Y), 0);
                             if (numberOfMissiles > 0)
                             {
                                 //check for stop before we fire
@@ -195,8 +217,5 @@ namespace SkynetTDS.Controller
             }
         }
         #endregion
-
-
-
     }
 }

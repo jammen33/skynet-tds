@@ -12,6 +12,11 @@ namespace SkynetTDS.Controller
         void emergencyStop();
         void calibrateLauncher();
 
+        int numberOfMissiles
+        {
+            get;
+        }
+
         event EventHandler MissileFired;
         event EventHandler<FoundTatgetEventArgs> FoundTargets;
         event EventHandler OutOfMissiles;

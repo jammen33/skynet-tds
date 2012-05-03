@@ -43,5 +43,12 @@ namespace SkynetTDS.Controller
 
 
         public event EventHandler EventTerminated;
+
+
+        public int numberOfMissiles
+        {
+            get;
+            private set;
+        }
     }
 }
