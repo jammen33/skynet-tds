@@ -44,28 +44,16 @@ namespace SkynetTDS.Controller
 
         ~FriendFoeController()
         {
-
-                vision = null;
-                launcher = null;
-                if (controllerThread.IsAlive)
-                {
-                    controllerThread.Abort();
-
-                }
-        }
-        protected void Dispose(bool disposing)
-        {
-            if (disposing)
+            vision.Stop();
+            vision = null;
+            launcher = null;
+            if (controllerThread != null && controllerThread.IsAlive)
             {
-                vision = null;
-                launcher = null;
-                if (controllerThread.IsAlive)
-                {
-                    controllerThread.Abort();
+                controllerThread.Abort();
 
-                }
             }
         }
+
 
         public void calibrateLauncher()
         {
@@ -92,20 +80,31 @@ namespace SkynetTDS.Controller
             {
                 shouldRun = false;
                 isRunning = false;
-                onEventTerminated(new EventArgs());
             }
         }
 
         public void emergencyStop()
         {
-            if (controllerThread.IsAlive)
+            if ( controllerThread != null && controllerThread.IsAlive)
             {
                 controllerThread.Abort();
             }
             
             shouldRun = false;
             isRunning = false;
-            onEventTerminated(new EventArgs());
+        }
+
+
+        public void timesAlmostUp()
+        {
+            if (controllerThread.IsAlive)
+            {
+                controllerThread.Abort();
+            }
+
+            shouldRun = false;
+            isRunning = false;
+            launcher.Fire(numberOfMissiles);
         }
 
         #region run
@@ -139,6 +138,8 @@ namespace SkynetTDS.Controller
                 onFoundTargets(e);
                 if(foeCount < 1)
                 {
+                    onEventTerminated(new EventArgs());
+                    stopEvent();
                     break;
                 }
                 foreach( Target t in targets )
@@ -165,6 +166,7 @@ namespace SkynetTDS.Controller
                             {
                                 shouldRun = false;
                                 onOutOfMissiles(new EventArgs());
+                                onEventTerminated(new EventArgs());
                                 stopEvent();
                                 break;
                             }
@@ -173,8 +175,8 @@ namespace SkynetTDS.Controller
                 }
                 targets.Clear();
             }
-            
         }
+
         #endregion
         #region events
         private void launcherFired(object sender, EventArgs e)
@@ -221,5 +223,8 @@ namespace SkynetTDS.Controller
             }
         }
         #endregion
+
+
+
     }
 }

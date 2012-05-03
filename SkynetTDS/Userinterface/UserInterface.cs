@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.Collections.ObjectModel;
+using System.Timers;
 
 
 using Emgu.CV;
@@ -30,22 +31,34 @@ namespace SkynetTDS.Userinterface
         delegate void SetTextCallback(string text);
         delegate void setCountsCallBack();
         delegate void changeButtons( bool start, bool stop, bool estop);
+        delegate void displayTimeRemaining(string time);
+
+        ThreadStart timerThreadStart;
+        Thread timerThread;
+
+        event EventHandler TimesAlmostUp;
+        event EventHandler TimeIsUp;
 
         int numberOfMissiles;
         int numberOfFoes;
         int numberOfFriends;
+        TimeSpan time;
+        bool Counting;
 
         public UserInterface()
         {
             InitializeComponent();
-            
+
             //set default values
-            stopEvent.Enabled = false;
-            estop.Enabled = false;
+            stopEventButton.Enabled = false;
+            estopButton.Enabled = false;
             numberOfMissiles = 4;
 
             startVideo();
             setUpController();
+            this.TimesAlmostUp += new EventHandler(timeAlmostUp);
+            this.TimeIsUp += new EventHandler(timeIsUp);
+            eventTimeLimit.Text = "0";
 
             //initalize missile count
             missileCount.Text = numberOfMissiles.ToString();
@@ -74,10 +87,10 @@ namespace SkynetTDS.Userinterface
         {
             vision = VisionDevice.getInstance();
             vision.Start();
-            vision.CameraStarted += new EventHandler(captureStarted);
             vision.ImageCaptured += new EventHandler<ImageDeviceArgs>(updatIimage);
             vision.CameraStopped += new EventHandler(captureStopped);
         }
+            
 
         /// <summary>
         /// Ask the user to select an event and creates the controller object
@@ -91,15 +104,15 @@ namespace SkynetTDS.Userinterface
             controller.MissileFired += new EventHandler(missileFired);
             controller.EventTerminated += new EventHandler(eventTerminated);
             controller.OutOfMissiles += new EventHandler(outOfMissiles);
-
+            setMissileCount(controller.numberOfMissiles.ToString());
         }
 
 
-        public void captureStarted( object sender, EventArgs e )
+        public void captureStopped(object sender, EventArgs e)
         {
-           
+            vision.ImageCaptured -= new EventHandler<ImageDeviceArgs>(updatIimage);
+            vision.CameraStopped -= new EventHandler(captureStopped);
         }
-
         /// <summary>
         /// Draws targets to the image and displays it to the screen.
         /// if there are no targets it simply displays the image.
@@ -133,39 +146,88 @@ namespace SkynetTDS.Userinterface
             }
         }
 
-        public void captureStopped(object sender, EventArgs e)
-        {
 
+
+
+
+        /// <summary>
+        /// loop for timer thread
+        /// </summary>
+        private void timer()
+        {
+            DateTime startTime = DateTime.Now;
+            DateTime currentTime;
+            TimeSpan t, timeLeft;
+            
+            //set time to 0 to not have a timed event
+            if (time.Equals( new TimeSpan(0,0,0,0)))
+            {
+                timerThread.Abort();
+            }
+            while (Counting)
+            {
+                currentTime = DateTime.Now;
+                t = currentTime.Subtract(startTime);
+                timeLeft = time.Subtract(t);
+
+                //3 seconds to fire missiles?
+                if(timeLeft.Seconds < 3)
+                    {
+                        TimesAlmostUp(this, new EventArgs());
+                    }
+                if (this.timeRemainingLable.InvokeRequired)
+                {
+                     displayTimeRemaining d = new displayTimeRemaining(setTimer);
+                    this.Invoke(d, new object[] { timeLeft.ToString() });
+
+                }
+                else
+                {
+                    timeRemainingLable.Text = time.ToString();
+                }
+            }
         }
 
-        private void StartEvent_Click(object sender, EventArgs e)
+        private void setTimer(string timeLeft)
         {
-            stopEvent.Enabled = true;
-            estop.Enabled = true;
-            StartEvent.Enabled = false;
-           // spawnEventController();
-            controller.startEvent();
+            lock (timeRemainingLable.Text)
+            {
+                timeRemainingLable.Text = timeLeft;
+            }
         }
 
        
         private void setButtonEnabled( bool start, bool stop, bool estp )
         {
-            stopEvent.Enabled = stop;
-            estop.Enabled = estp;
-            StartEvent.Enabled = start;
-
-
+            stopEventButton.Enabled = stop;
+            estopButton.Enabled = estp;
+            StartEventButton.Enabled = start;
         }
+
         #region eventHandlers
+
+
+        private void timeAlmostUp(object sender, EventArgs e)
+        {
+            controller.timesAlmostUp();
+        }
+        private void timeIsUp(object send, EventArgs e)
+        {
+            emergencyStop();
+            if (timerThread != null && timerThread.IsAlive)
+            {
+                timerThread.Abort();
+            }
+        }
         private void missileFired( object sender, EventArgs e)
         {
             lock (this)
             {
-                numberOfMissiles--;
+
                 if (this.missileCount.InvokeRequired)
                 {
                     SetTextCallback d = new SetTextCallback(setMissileCount);
-                    this.Invoke(d, new object[] { numberOfMissiles.ToString() });      
+                    this.Invoke(d, new object[] { controller.numberOfMissiles.ToString() });      
 
                 } else 
                 {
@@ -183,7 +245,11 @@ namespace SkynetTDS.Userinterface
         {
             lock (this)
             {
-                if (this.StartEvent.InvokeRequired || stopEvent.InvokeRequired )
+                if (timerThread != null && timerThread.IsAlive)
+                {
+                    timerThread.Abort();
+                }
+                if (this.StartEventButton.InvokeRequired || stopEventButton.InvokeRequired )
                 {
                     changeButtons d = new changeButtons(setButtonEnabled);
                     this.Invoke(d, new object[] { true, false, false });      
@@ -207,7 +273,6 @@ namespace SkynetTDS.Userinterface
                 {
                     setCountsCallBack d = new setCountsCallBack(setFriendFoeCounts);
                     this.Invoke(d, new object[] { });
-
                 }
                 else
                 {
@@ -219,7 +284,10 @@ namespace SkynetTDS.Userinterface
 
         void setMissileCount(string text)
         {
-            missileCount.Text = text;
+            lock (missileCount)
+            {
+                missileCount.Text = text;
+            }
         }
 
         void setFriendFoeCounts()
@@ -232,26 +300,69 @@ namespace SkynetTDS.Userinterface
         #endregion
 
         #region controller control
+
+        private void StartEvent_Click(object sender, EventArgs e)
+        {
+            time = new TimeSpan(0,0,0, Convert.ToInt32(eventTimeLimit.Text));
+            MessageBox.Show(time.ToString());
+            setTimer(eventTimeLimit.Text);
+            Counting = true;
+            timerThreadStart = new ThreadStart(timer);
+            timerThread = new Thread(timerThreadStart);
+            timerThread.Start();
+
+            stopEventButton.Enabled = true;
+            estopButton.Enabled = true;
+            StartEventButton.Enabled = false;
+            // spawnEventController();
+            if (controller == null)
+            {
+                setUpController();
+            }
+            controller.startEvent();
+        }
+
         private void stopEvent_Click(object sender, EventArgs e)
         {
-            stopEvent.Enabled = false;
-            estop.Enabled = false;
-            StartEvent.Enabled = true;
+            stopEvent();
+        }
+
+        private void stopEvent()
+        {
+            stopEventButton.Enabled = false;
+            estopButton.Enabled = false;
+            StartEventButton.Enabled = true;
+            Counting = false;
+            if (timerThread != null && timerThread.IsAlive)
+            {
+                timerThread.Abort();
+            }
 
             if (controller != null)
             {
                 controller.stopEvent();
+                controller = null;
             }
         }
 
         private void estop_Click(object sender, EventArgs e)
         {
-            stopEvent.Enabled = false;
-            estop.Enabled = false;
-            StartEvent.Enabled = true;
+            emergencyStop();
+        }
+
+        private void emergencyStop()
+        {
+            stopEventButton.Enabled = false;
+            estopButton.Enabled = false;
+            StartEventButton.Enabled = true;
+            if (timerThread != null && timerThread.IsAlive)
+            {
+                timerThread.Abort();
+            }
             if (controller != null)
             {
                 controller.emergencyStop();
+                controller = null;
             }
         }
 
@@ -271,5 +382,18 @@ namespace SkynetTDS.Userinterface
                 controller = null;
             }
         }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            vision.Stop();
+            if (timerThread != null && timerThread.IsAlive)
+            {
+                timerThread.Abort();
+            }
+            controller.emergencyStop();
+            this.Close();
+
+        }
+
     }
 }

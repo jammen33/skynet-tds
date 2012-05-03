@@ -29,15 +29,20 @@
         private void InitializeComponent()
         {
             this.displayImage = new System.Windows.Forms.PictureBox();
-            this.StartEvent = new System.Windows.Forms.Button();
+            this.StartEventButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.missileCount = new System.Windows.Forms.Label();
-            this.stopEvent = new System.Windows.Forms.Button();
-            this.estop = new System.Windows.Forms.Button();
+            this.stopEventButton = new System.Windows.Forms.Button();
+            this.estopButton = new System.Windows.Forms.Button();
             this.foeCount = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.friendCount = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.eventTimeLimit = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.timeRemainingLable = new System.Windows.Forms.Label();
+            this.exitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.displayImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,15 +54,15 @@
             this.displayImage.TabIndex = 0;
             this.displayImage.TabStop = false;
             // 
-            // StartEvent
+            // StartEventButton
             // 
-            this.StartEvent.Location = new System.Drawing.Point(12, 39);
-            this.StartEvent.Name = "StartEvent";
-            this.StartEvent.Size = new System.Drawing.Size(114, 70);
-            this.StartEvent.TabIndex = 4;
-            this.StartEvent.Text = "Start Event";
-            this.StartEvent.UseVisualStyleBackColor = true;
-            this.StartEvent.Click += new System.EventHandler(this.StartEvent_Click);
+            this.StartEventButton.Location = new System.Drawing.Point(12, 39);
+            this.StartEventButton.Name = "StartEventButton";
+            this.StartEventButton.Size = new System.Drawing.Size(114, 70);
+            this.StartEventButton.TabIndex = 4;
+            this.StartEventButton.Text = "Start Event";
+            this.StartEventButton.UseVisualStyleBackColor = true;
+            this.StartEventButton.Click += new System.EventHandler(this.StartEvent_Click);
             // 
             // label1
             // 
@@ -76,25 +81,25 @@
             this.missileCount.Size = new System.Drawing.Size(0, 13);
             this.missileCount.TabIndex = 6;
             // 
-            // stopEvent
+            // stopEventButton
             // 
-            this.stopEvent.Location = new System.Drawing.Point(12, 115);
-            this.stopEvent.Name = "stopEvent";
-            this.stopEvent.Size = new System.Drawing.Size(114, 70);
-            this.stopEvent.TabIndex = 7;
-            this.stopEvent.Text = "Stop Event";
-            this.stopEvent.UseVisualStyleBackColor = true;
-            this.stopEvent.Click += new System.EventHandler(this.stopEvent_Click);
+            this.stopEventButton.Location = new System.Drawing.Point(12, 115);
+            this.stopEventButton.Name = "stopEventButton";
+            this.stopEventButton.Size = new System.Drawing.Size(114, 70);
+            this.stopEventButton.TabIndex = 7;
+            this.stopEventButton.Text = "Stop Event";
+            this.stopEventButton.UseVisualStyleBackColor = true;
+            this.stopEventButton.Click += new System.EventHandler(this.stopEvent_Click);
             // 
-            // estop
+            // estopButton
             // 
-            this.estop.Location = new System.Drawing.Point(811, 39);
-            this.estop.Name = "estop";
-            this.estop.Size = new System.Drawing.Size(114, 70);
-            this.estop.TabIndex = 8;
-            this.estop.Text = "Emergency Stop";
-            this.estop.UseVisualStyleBackColor = true;
-            this.estop.Click += new System.EventHandler(this.estop_Click);
+            this.estopButton.Location = new System.Drawing.Point(811, 39);
+            this.estopButton.Name = "estopButton";
+            this.estopButton.Size = new System.Drawing.Size(114, 70);
+            this.estopButton.TabIndex = 8;
+            this.estopButton.Text = "Emergency Stop";
+            this.estopButton.UseVisualStyleBackColor = true;
+            this.estopButton.Click += new System.EventHandler(this.estop_Click);
             // 
             // foeCount
             // 
@@ -130,20 +135,68 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Friend Targets: ";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 229);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Time Limit: ";
+            // 
+            // eventTimeLimit
+            // 
+            this.eventTimeLimit.Location = new System.Drawing.Point(15, 245);
+            this.eventTimeLimit.Name = "eventTimeLimit";
+            this.eventTimeLimit.Size = new System.Drawing.Size(100, 20);
+            this.eventTimeLimit.TabIndex = 14;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 313);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Time Remaining: ";
+            // 
+            // timeRemainingLable
+            // 
+            this.timeRemainingLable.AutoSize = true;
+            this.timeRemainingLable.Location = new System.Drawing.Point(12, 335);
+            this.timeRemainingLable.Name = "timeRemainingLable";
+            this.timeRemainingLable.Size = new System.Drawing.Size(0, 13);
+            this.timeRemainingLable.TabIndex = 16;
+            // 
+            // exitButton
+            // 
+            this.exitButton.Location = new System.Drawing.Point(848, 504);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.TabIndex = 17;
+            this.exitButton.Text = "Exit";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
             // UserInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(935, 539);
+            this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.timeRemainingLable);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.eventTimeLimit);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.friendCount);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.foeCount);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.estop);
-            this.Controls.Add(this.stopEvent);
+            this.Controls.Add(this.estopButton);
+            this.Controls.Add(this.stopEventButton);
             this.Controls.Add(this.missileCount);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.StartEvent);
+            this.Controls.Add(this.StartEventButton);
             this.Controls.Add(this.displayImage);
             this.Name = "UserInterface";
             this.Text = "UserInterface";
@@ -156,14 +209,19 @@
         #endregion
 
         private System.Windows.Forms.PictureBox displayImage;
-        private System.Windows.Forms.Button StartEvent;
+        private System.Windows.Forms.Button StartEventButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label missileCount;
-        private System.Windows.Forms.Button stopEvent;
-        private System.Windows.Forms.Button estop;
+        private System.Windows.Forms.Button stopEventButton;
+        private System.Windows.Forms.Button estopButton;
         private System.Windows.Forms.Label foeCount;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label friendCount;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox eventTimeLimit;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label timeRemainingLable;
+        private System.Windows.Forms.Button exitButton;
     }
 }

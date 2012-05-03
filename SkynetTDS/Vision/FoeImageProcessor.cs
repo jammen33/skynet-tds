@@ -21,6 +21,7 @@ namespace SkynetTDS.Vision
         int minDistance = 70;
         int minRadius = 30;
         int maxRadius = 40;
+        int centerThreshold = 10;
 
         public FoeImageProcessor()
         {
@@ -37,6 +38,7 @@ namespace SkynetTDS.Vision
 
         private void findFoes()
         {
+            bool ok = true;
             Target tmpTarget;
             //Convert the image to grayscale and filter out the noise
             Image<Gray, Byte> gray = img.Copy().Convert<Gray, Byte>().PyrDown().PyrUp();
@@ -56,18 +58,32 @@ namespace SkynetTDS.Vision
 
             foreach (CircleF circle in circles)
             {
-                Bgr color = img[(int)circle.Center.Y, (int)circle.Center.X];
-                if (color.Red > color.Blue && color.Red > color.Green)
+                foreach (Target t in targets)
                 {
-                    tmpTarget = new Target();
+                    if (Math.Abs(circle.Center.X - t.Point.X) < centerThreshold)
+                    {
+                        ok = false;
+                    }
+                }
+                if (ok)
+                {
+                    Bgr color = img[(int)circle.Center.Y, (int)circle.Center.X];
+                    if (color.Red > color.Blue && color.Red > color.Green && color.Red > 150)
+                    {
+                        tmpTarget = new Target();
 
-                    tmpTarget.Color = Color.Red;
-                    tmpTarget.IsFriend = false;
-                    tmpTarget.Point = circle.Center;
-                    tmpTarget.Distance = 0;
-                    tmpTarget.IsMoving = false;
+                        tmpTarget.Color = Color.Red;
+                        tmpTarget.IsFriend = false;
+                        tmpTarget.Point = circle.Center;
+                        tmpTarget.Distance = 0;
+                        tmpTarget.IsMoving = false;
 
-                    targets.Add(tmpTarget);
+                        targets.Add(tmpTarget);
+                    }
+                }
+                else
+                {
+                    ok = true;
                 }
             }
         }

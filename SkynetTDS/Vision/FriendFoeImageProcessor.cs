@@ -15,7 +15,7 @@ using Emgu.Util;
 
 namespace SkynetTDS.Vision
 {
-    
+
     class FriendFoeImageProcessor : IImageProcessor
     {
         Collection<Target> targets;
@@ -34,14 +34,14 @@ namespace SkynetTDS.Vision
             }
             targets = new Collection<Target>();
             //img = new Image<Bgr, byte>("NewCircleTest.png").Resize(610, 360, INTER.CV_INTER_LINEAR);
-            findFoes();
-            findFriends();
+            findCircleTargets();
+            findSquareTargets();
             img.Dispose();
-            
+
             return targets;
         }
 
-        private void findFoes()
+        private void findCircleTargets()
         {
             bool ok = true;
             Target tmpTarget;
@@ -85,6 +85,17 @@ namespace SkynetTDS.Vision
 
                         targets.Add(tmpTarget);
                     }
+                    else if (color.Green > color.Blue && color.Red < color.Green && color.Green > 150)
+                    {
+                        tmpTarget = new Target();
+                        tmpTarget.Color = Color.Green;
+                        tmpTarget.IsFriend = true;
+                        tmpTarget.Point = circle.Center;
+                        tmpTarget.Distance = 0;
+                        tmpTarget.IsMoving = false;
+
+                        targets.Add(tmpTarget);
+                    }
                 }
                 else
                 {
@@ -93,7 +104,7 @@ namespace SkynetTDS.Vision
             }
         }
 
-        private void findFriends()
+        private void findSquareTargets()
         {
             Target tmpTarget;
             bool ok = true;
@@ -103,15 +114,6 @@ namespace SkynetTDS.Vision
             Gray cannyThreshold = new Gray(180);
             Gray cannyThresholdLinking = new Gray(120);
             Gray circleAccumulatorThreshold = new Gray(120);
-
-            CircleF[] circles = gray.HoughCircles(
-                cannyThreshold,
-                circleAccumulatorThreshold,
-                resolution, //Resolution of the accumulator used to detect centers of the circles
-                minDistance, //min distance 
-                minRadius, //min radius
-                maxRadius //max radius
-                )[0]; //Get the circles from the first channel
 
             Image<Gray, Byte> cannyEdges = gray.Canny(cannyThreshold, cannyThresholdLinking);
             LineSegment2D[] lines = cannyEdges.HoughLinesBinary(
@@ -125,7 +127,7 @@ namespace SkynetTDS.Vision
             #region Find triangles and rectangles
             List<MCvBox2D> boxList = new List<MCvBox2D>();
 
-          /**  using (MemStorage storage = new MemStorage()) //allocate storage for contour approximation
+            using (MemStorage storage = new MemStorage()) //allocate storage for contour approximation
                 for (Contour<Point> contours = cannyEdges.FindContours(); contours != null; contours = contours.HNext)
                 {
                     Contour<Point> currentContour = contours.ApproxPoly(contours.Perimeter * 0.05, storage);
@@ -154,90 +156,60 @@ namespace SkynetTDS.Vision
                             if (isRectangle) boxList.Add(currentContour.GetMinAreaRect());
                         }
                     }
-                }
-           */
+
             #endregion
 
 
 
-            #region draw triangles and rectangles
+                    #region draw triangles and rectangles
 
-            foreach (MCvBox2D box in boxList)
-            {
-                bool match = false;
-                foreach (CircleF circle in circles)
-                {
-                    double cx = box.center.X - circle.Center.X;
-                    double cy = box.center.Y - circle.Center.Y;
-
-                    if (Math.Abs(cx) < centerThreshold && Math.Abs(cy) < centerThreshold)
+                    foreach (MCvBox2D box in boxList)
                     {
-                        match = true;
+                        bool match = false;
+                        foreach (Target t in targets)
+                        {
+                            double cx = box.center.X - t.Point.X;
+                            double cy = box.center.Y - t.Point.Y;
+
+                            if (Math.Abs(cx) < centerThreshold && Math.Abs(cy) < centerThreshold)
+                            {
+                                match = true;
+                            }
+                        }
+                        if (!match)
+                        {
+                            Bgr color = img[(int)box.center.Y, (int)box.center.X];
+
+                            if (color.Green > 150 || color.Red > 150)
+                            {
+                                tmpTarget = new Target();
+
+                                if (color.Green > color.Red)
+                                {
+                                    tmpTarget.Color = Color.Green;
+                                }
+                                else
+                                {
+                                    tmpTarget.Color = Color.Red;
+                                }
+                                tmpTarget.IsFriend = true;
+                                tmpTarget.Point = box.center;
+                                tmpTarget.Distance = 0;
+                                tmpTarget.IsMoving = false;
+                                targets.Add(tmpTarget);
+                            }
+                            else
+                            {
+                                match = false;
+                            }
+                        }
+                    #endregion
+
+
+
+
                     }
                 }
-                if (!match)
-                {
-                    Bgr color = img[(int)box.center.Y, (int)box.center.X];
-
-                    if (color.Green > 150 || color.Red > 150)
-                    {
-                        tmpTarget = new Target();
-
-                        if (color.Green > color.Red)
-                        {
-                            tmpTarget.Color = Color.Green;
-                        }
-                        else
-                        {
-                            tmpTarget.Color = Color.Red;
-                        }
-                        tmpTarget.IsFriend = true;
-                        tmpTarget.Point = box.center;
-                        tmpTarget.Distance = 0;
-                        tmpTarget.IsMoving = false;
-                        targets.Add(tmpTarget);
-                    }
-                    else
-                    {
-                        match = false;
-                    }
-                }
-            #endregion
-
-                #region draw circles
-                foreach (CircleF circle in circles)
-                {
-                    foreach (Target t in targets)
-                    {
-                        if (Math.Abs(circle.Center.X - t.Point.X) < centerThreshold)
-                        {
-                            ok = false;
-                        }
-                    }
-                    if (ok)
-                    {
-                        Bgr color = img[(int)circle.Center.Y, (int)circle.Center.X];
-                        if (color.Green > color.Blue && color.Green > color.Red && color.Green > 150)
-                        {
-                            tmpTarget = new Target();
-
-                            tmpTarget.Color = Color.Green;
-                            tmpTarget.IsFriend = true;
-                            tmpTarget.Point = circle.Center;
-                            tmpTarget.Distance = 0;
-                            tmpTarget.IsMoving = false;
-
-                            targets.Add(tmpTarget);
-                        }
-                    }
-                    else
-                    {
-                        ok = true;
-                    }
-                }
-
-                #endregion
-            }
         }
     }
 }
