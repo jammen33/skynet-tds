@@ -147,6 +147,7 @@
             this.Controls.Add(this.displayImage);
             this.Name = "UserInterface";
             this.Text = "UserInterface";
+            this.Load += new System.EventHandler(this.UserInterface_Load);
             ((System.ComponentModel.ISupportInitialize)(this.displayImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
