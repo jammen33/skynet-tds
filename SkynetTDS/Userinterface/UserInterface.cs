@@ -29,6 +29,7 @@ namespace SkynetTDS.Userinterface
 
         delegate void SetTextCallback(string text);
         delegate void setCountsCallBack();
+        delegate void changeButtons( bool start, bool stop, bool estop);
 
         int eventType;
         int numberOfMissiles;
@@ -110,7 +111,7 @@ namespace SkynetTDS.Userinterface
                 }
                 else
                 {
-                    displayImage.Image = (Image)e.Frame.Clone();
+                        displayImage.Image = (Image)e.Frame.Clone();
                 }
             }
         }
@@ -120,11 +121,11 @@ namespace SkynetTDS.Userinterface
 
         }
 
-        private void eventTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+/*        private void eventTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             eventType = eventTypeComboBox.SelectedIndex;
         }
-
+        */
         private void StartEvent_Click(object sender, EventArgs e)
         {
             stopEvent.Enabled = true;
@@ -134,16 +135,6 @@ namespace SkynetTDS.Userinterface
             controller.startEvent();
         }
 
-   /*     private void spawnEventController()
-        {
-            if (!isEvent)
-            {
-                controller = controllerCreator.createEventController(eventType);
-                controller.FoundTargets += new EventHandler<FoundTatgetEventArgs>(targetsFound);
-                controller.MissileFired += new EventHandler(missileFired);
-                isEvent = true;
-            }
-        }*/
         private void targetsFound( object sender, FoundTatgetEventArgs e)
         {
             lock(this)
@@ -162,6 +153,14 @@ namespace SkynetTDS.Userinterface
                     setFriendFoeCounts();
                 }
             }
+
+        }
+        private void setButtonEnabled( bool start, bool stop, bool estp )
+        {
+            stopEvent.Enabled = stop;
+            estop.Enabled = estp;
+            StartEvent.Enabled = start;
+
 
         }
         #region eventHandlers
@@ -189,11 +188,21 @@ namespace SkynetTDS.Userinterface
 
         private void eventTerminated( object sender, EventArgs e)
         {
-            StartEvent.Enabled = true;
-            stopEvent.Enabled = false;
-            estop.Enabled = false;
+            lock (this)
+            {
+                if (this.StartEvent.InvokeRequired || stopEvent.InvokeRequired )
+                {
+                    changeButtons d = new changeButtons(setButtonEnabled);
+                    this.Invoke(d, new object[] { true, false, false });      
+
+                } else 
+                {
+                    missileCount.Text = numberOfMissiles.ToString();
+                }
+            }
         }
         #endregion
+
 
         void setMissileCount(string text)
         {

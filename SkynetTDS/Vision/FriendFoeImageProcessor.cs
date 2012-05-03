@@ -22,7 +22,7 @@ namespace SkynetTDS.Vision
         Image<Bgr, Byte> img;
         float resolution = 5;
         int minDistance = 70;
-        int minRadius = 30;
+        int minRadius = 25;
         int maxRadius = 40;
         int centerThreshold = 10;
 

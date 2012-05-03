@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.displayImage = new System.Windows.Forms.PictureBox();
-            this.eventTypeComboBox = new System.Windows.Forms.ComboBox();
             this.StartEvent = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.missileCount = new System.Windows.Forms.Label();
@@ -49,18 +48,6 @@
             this.displayImage.Size = new System.Drawing.Size(673, 486);
             this.displayImage.TabIndex = 0;
             this.displayImage.TabStop = false;
-            // 
-            // eventTypeComboBox
-            // 
-            this.eventTypeComboBox.FormattingEnabled = true;
-            this.eventTypeComboBox.Items.AddRange(new object[] {
-            "Foe Event",
-            "Friend Foe Event"});
-            this.eventTypeComboBox.Location = new System.Drawing.Point(12, 12);
-            this.eventTypeComboBox.Name = "eventTypeComboBox";
-            this.eventTypeComboBox.Size = new System.Drawing.Size(114, 21);
-            this.eventTypeComboBox.TabIndex = 3;
-            this.eventTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.eventTypeComboBox_SelectedIndexChanged);
             // 
             // StartEvent
             // 
@@ -157,7 +144,6 @@
             this.Controls.Add(this.missileCount);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.StartEvent);
-            this.Controls.Add(this.eventTypeComboBox);
             this.Controls.Add(this.displayImage);
             this.Name = "UserInterface";
             this.Text = "UserInterface";
@@ -170,7 +156,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox displayImage;
-        private System.Windows.Forms.ComboBox eventTypeComboBox;
         private System.Windows.Forms.Button StartEvent;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label missileCount;

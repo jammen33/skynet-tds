@@ -29,7 +29,7 @@ namespace SkynetTDS.Controller
         public FriendFoeController()
         {
             launcher = new LauncherController();
-            numberOfMissiles = 4;
+            numberOfMissiles = 8;
             launcher.MissileFired += new EventHandler(launcherFired);
             vision = VisionDevice.getInstance();
             processor = new FriendFoeImageProcessor();
@@ -121,7 +121,7 @@ namespace SkynetTDS.Controller
                     {
                         lock (this)
                         {
-                            launcher.MoveAbsolute(((int)t.Point.X - (img.Width/2))*2, (int)t.Point.Y, 0);
+                            launcher.MoveAbsolute((int)((t.Point.X - (img.Width / 2)) * 1.5), (int)((img.Height / 2) - t.Point.Y), 0);
                             if (numberOfMissiles > 0)
                             {
                                 //check for stop before we fire

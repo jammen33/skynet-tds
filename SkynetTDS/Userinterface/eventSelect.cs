@@ -11,7 +11,6 @@ namespace SkynetTDS.Userinterface
 {
     public partial class eventSelect : Form
     {
-        DialogResult result;
         public eventSelect()
         {
             InitializeComponent();
@@ -20,13 +19,14 @@ namespace SkynetTDS.Userinterface
         private void friendFoeButton_Click(object sender, EventArgs e)
         {
             StateSelected = 1;
-            result = ok;
+            this.DialogResult = DialogResult.OK;
             Close();
         }
 
         private void foeButton_Click(object sender, EventArgs e)
         {
             StateSelected = 0;
+            this.DialogResult = DialogResult.OK;
             Close();
         }
 
