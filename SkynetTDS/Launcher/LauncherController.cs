@@ -29,12 +29,9 @@ namespace SkynetTDS.Launchers
             launcher = new MissileLauncher();
         }
 
-        protected void Dispose(bool disposing)
+        ~LauncherController()
         {
-            if (disposing)
-            {
-                launcher.command_switchLED(false);
-            }
+            launcher.command_switchLED(false);
         }
 
         #region Functions
@@ -64,8 +61,7 @@ namespace SkynetTDS.Launchers
         //Fires the missile launcher
         public void Fire(int number_of_missiles)
         {
-            int index = 1;
-            for (; index <= number_of_missiles; index++)
+            for (int i = 0; i < number_of_missiles; i++)
             {
                 launcher.command_Fire();
                 onMissileFired(new EventArgs());

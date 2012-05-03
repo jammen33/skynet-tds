@@ -24,7 +24,7 @@ namespace SkynetTDS.Vision
         int minDistance = 70;
         int minRadius = 25;
         int maxRadius = 40;
-        int centerThreshold = 10;
+        int centerThreshold = 50;
 
         public Collection<Target> DetectTargets(Image image)
         {

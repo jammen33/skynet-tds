@@ -39,7 +39,6 @@ namespace SkynetTDS.Userinterface
         event EventHandler TimesAlmostUp;
         event EventHandler TimeIsUp;
 
-        int numberOfMissiles;
         int numberOfFoes;
         int numberOfFriends;
         TimeSpan time;
@@ -49,10 +48,11 @@ namespace SkynetTDS.Userinterface
         {
             InitializeComponent();
 
+            controllerCreator = new EventControllerCreator();
+
             //set default values
             stopEventButton.Enabled = false;
             estopButton.Enabled = false;
-            numberOfMissiles = 4;
 
             startVideo();
             setUpController();
@@ -60,8 +60,6 @@ namespace SkynetTDS.Userinterface
             this.TimeIsUp += new EventHandler(timeIsUp);
             eventTimeLimit.Text = "0";
 
-            //initalize missile count
-            missileCount.Text = numberOfMissiles.ToString();
         }
 
         /// <summary>
@@ -97,7 +95,6 @@ namespace SkynetTDS.Userinterface
         /// </summary>
         private void setUpController()
         {
-            controllerCreator = new EventControllerCreator();
             controller = controllerCreator.createEventController(showEventSelect());
             controller.calibrateLauncher();
             controller.FoundTargets += new EventHandler<FoundTatgetEventArgs>(targetsFound);
@@ -148,13 +145,12 @@ namespace SkynetTDS.Userinterface
 
 
 
-
-
         /// <summary>
         /// loop for timer thread
         /// </summary>
         private void timer()
         {
+            bool warned = false;
             DateTime startTime = DateTime.Now;
             DateTime currentTime;
             TimeSpan t, timeLeft;
@@ -171,14 +167,19 @@ namespace SkynetTDS.Userinterface
                 timeLeft = time.Subtract(t);
 
                 //3 seconds to fire missiles?
-                if(timeLeft.Seconds < 3)
-                    {
-                        TimesAlmostUp(this, new EventArgs());
-                    }
+                if (timeLeft.Seconds < 4 && timeLeft.Seconds > 0 && !warned)
+                {
+                    TimesAlmostUp(this, new EventArgs());
+                    warned = true;
+                }
+                else if (timeLeft.Seconds < 0)
+                {
+                    TimeIsUp(this, new EventArgs());
+                }
                 if (this.timeRemainingLable.InvokeRequired)
                 {
                      displayTimeRemaining d = new displayTimeRemaining(setTimer);
-                    this.Invoke(d, new object[] { timeLeft.ToString() });
+                    this.Invoke(d, new object[] { timeLeft.Seconds.ToString() });
 
                 }
                 else
@@ -213,11 +214,8 @@ namespace SkynetTDS.Userinterface
         }
         private void timeIsUp(object send, EventArgs e)
         {
+            controller.emergencyStop();
             emergencyStop();
-            if (timerThread != null && timerThread.IsAlive)
-            {
-                timerThread.Abort();
-            }
         }
         private void missileFired( object sender, EventArgs e)
         {
@@ -231,14 +229,14 @@ namespace SkynetTDS.Userinterface
 
                 } else 
                 {
-                    missileCount.Text = numberOfMissiles.ToString();
+                    missileCount.Text = controller.numberOfMissiles.ToString();
                 }
             }
         }
 
         private void outOfMissiles(object sender, EventArgs e)
         {
-            //controller.stopEvent();
+            
         }
 
         private void eventTerminated( object sender, EventArgs e)
@@ -249,6 +247,10 @@ namespace SkynetTDS.Userinterface
                 {
                     timerThread.Abort();
                 }
+                if (controller != null)
+                {
+                    controller = null;
+                }
                 if (this.StartEventButton.InvokeRequired || stopEventButton.InvokeRequired )
                 {
                     changeButtons d = new changeButtons(setButtonEnabled);
@@ -256,7 +258,7 @@ namespace SkynetTDS.Userinterface
 
                 } else 
                 {
-                    missileCount.Text = numberOfMissiles.ToString();
+                    missileCount.Text = controller.numberOfMissiles.ToString();
                 }
             }
         }
@@ -303,8 +305,11 @@ namespace SkynetTDS.Userinterface
 
         private void StartEvent_Click(object sender, EventArgs e)
         {
+            if (controller == null)
+            {
+                setUpController();
+            }
             time = new TimeSpan(0,0,0, Convert.ToInt32(eventTimeLimit.Text));
-            MessageBox.Show(time.ToString());
             setTimer(eventTimeLimit.Text);
             Counting = true;
             timerThreadStart = new ThreadStart(timer);
@@ -314,11 +319,7 @@ namespace SkynetTDS.Userinterface
             stopEventButton.Enabled = true;
             estopButton.Enabled = true;
             StartEventButton.Enabled = false;
-            // spawnEventController();
-            if (controller == null)
-            {
-                setUpController();
-            }
+
             controller.startEvent();
         }
 
@@ -352,12 +353,20 @@ namespace SkynetTDS.Userinterface
 
         private void emergencyStop()
         {
-            stopEventButton.Enabled = false;
-            estopButton.Enabled = false;
-            StartEventButton.Enabled = true;
+            if (this.StartEventButton.InvokeRequired || stopEventButton.InvokeRequired)
+            {
+                changeButtons d = new changeButtons(setButtonEnabled);
+                this.Invoke(d, new object[] { true, false, false });
+
+            }
+            else
+            {
+                setButtonEnabled(true, false, false);
+            }
             if (timerThread != null && timerThread.IsAlive)
             {
                 timerThread.Abort();
+                timerThread = null;
             }
             if (controller != null)
             {
@@ -390,7 +399,11 @@ namespace SkynetTDS.Userinterface
             {
                 timerThread.Abort();
             }
-            controller.emergencyStop();
+            if (controller != null)
+            {
+                controller.emergencyStop();
+                controller = null;
+            }
             this.Close();
 
         }

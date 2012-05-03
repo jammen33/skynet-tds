@@ -16,6 +16,8 @@ namespace SkynetTDS.Controller
     {
         ThreadStart controllerThreadStart;
         Thread controllerThread;
+        ThreadStart fireallThreadStart;
+        Thread fireallThread;
         IVisionDevice vision;
         IImageProcessor processor;
         ILauncher launcher;
@@ -44,7 +46,6 @@ namespace SkynetTDS.Controller
 
         ~FriendFoeController()
         {
-            vision.Stop();
             vision = null;
             launcher = null;
             if (controllerThread != null && controllerThread.IsAlive)
@@ -85,6 +86,10 @@ namespace SkynetTDS.Controller
 
         public void emergencyStop()
         {
+            if (fireallThread != null && fireallThread.IsAlive)
+            {
+                fireallThread.Abort();
+            }
             if ( controllerThread != null && controllerThread.IsAlive)
             {
                 controllerThread.Abort();
@@ -97,14 +102,26 @@ namespace SkynetTDS.Controller
 
         public void timesAlmostUp()
         {
-            if (controllerThread.IsAlive)
+            if (controllerThread != null && controllerThread.IsAlive)
             {
                 controllerThread.Abort();
             }
+            if (fireallThread == null)
+            {
+                fireallThreadStart = new ThreadStart(fireAll);
+                fireallThread = new Thread(fireallThreadStart);
+                fireallThread.Start();
+            }
+            
+        }
 
-            shouldRun = false;
-            isRunning = false;
-            launcher.Fire(numberOfMissiles);
+        public void fireAll()
+        {
+            while (numberOfMissiles > 0 && shouldRun)
+            {
+                launcher.Fire(numberOfMissiles);
+            }
+            onEventTerminated(new EventArgs());
         }
 
         #region run
@@ -155,7 +172,6 @@ namespace SkynetTDS.Controller
                                 if (shouldRun)
                                 {
                                     launcher.Fire(1);
-                                    numberOfMissiles--;
                                 }
                                 else
                                 {
@@ -181,6 +197,7 @@ namespace SkynetTDS.Controller
         #region events
         private void launcherFired(object sender, EventArgs e)
         {
+            numberOfMissiles--;
             onMissileFired(e);
         }
 

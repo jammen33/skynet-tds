@@ -64,6 +64,15 @@ namespace SkynetTDS.Vision
                 instance = this;
             }
         }
+        ~VisionDevice()
+        {
+            if (isCapturing)
+            {
+                captureThread.Abort();
+                onStop(new EventArgs());
+                isCapturing = false;
+            }
+        }
 
         public static IVisionDevice getInstance()
         {
@@ -89,15 +98,6 @@ namespace SkynetTDS.Vision
             }
         }
 
-        protected void Dispose(bool disposing)
-        {
-            if (isCapturing)
-            {
-                captureThread.Abort();
-                onStop(new EventArgs());
-                isCapturing = false;
-            }
-        }
         /// <summary>
         /// Stops the camera if in continuous mode.
         /// </summary>

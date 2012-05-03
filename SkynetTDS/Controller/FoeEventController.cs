@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using System.Drawing;
 using System.Threading;
 using System.Collections.ObjectModel;
@@ -17,6 +16,8 @@ namespace SkynetTDS.Controller
     {
         ThreadStart controllerThreadStart;
         Thread controllerThread;
+        ThreadStart fireallThreadStart;
+        Thread fireallThread;
         IVisionDevice vision;
         IImageProcessor processor;
         ILauncher launcher;
@@ -45,7 +46,6 @@ namespace SkynetTDS.Controller
 
         ~FoeEventController()
         {
-            vision.Stop();
             vision = null;
             launcher = null;
             if (controllerThread != null && controllerThread.IsAlive)
@@ -86,11 +86,15 @@ namespace SkynetTDS.Controller
 
         public void emergencyStop()
         {
-            if ( controllerThread != null && controllerThread.IsAlive)
+            if (fireallThread != null && fireallThread.IsAlive)
+            {
+                fireallThread.Abort();
+            }
+            if (controllerThread != null && controllerThread.IsAlive)
             {
                 controllerThread.Abort();
             }
-            
+
             shouldRun = false;
             isRunning = false;
         }
@@ -98,14 +102,26 @@ namespace SkynetTDS.Controller
 
         public void timesAlmostUp()
         {
-            if (controllerThread.IsAlive)
+            if (controllerThread != null && controllerThread.IsAlive)
             {
                 controllerThread.Abort();
             }
+            if (fireallThread == null)
+            {
+                fireallThreadStart = new ThreadStart(fireAll);
+                fireallThread = new Thread(fireallThreadStart);
+                fireallThread.Start();
+            }
 
-            shouldRun = false;
-            isRunning = false;
-            launcher.Fire(numberOfMissiles);
+        }
+
+        public void fireAll()
+        {
+            while (numberOfMissiles > 0 && shouldRun)
+            {
+                launcher.Fire(numberOfMissiles);
+            }
+            onEventTerminated(new EventArgs());
         }
 
         #region run
@@ -126,7 +142,7 @@ namespace SkynetTDS.Controller
 
                 foreach (Target t in targets)
                 {
-                    if(t.IsFriend)
+                    if (t.IsFriend)
                     {
                         friendCount++;
                     }
@@ -135,15 +151,15 @@ namespace SkynetTDS.Controller
                         foeCount++;
                     }
                 }
-                FoundTatgetEventArgs e = new FoundTatgetEventArgs(foeCount,friendCount, targets);
+                FoundTatgetEventArgs e = new FoundTatgetEventArgs(foeCount, friendCount, targets);
                 onFoundTargets(e);
-                if(foeCount < 1)
+                if (foeCount < 1)
                 {
                     onEventTerminated(new EventArgs());
                     stopEvent();
                     break;
                 }
-                foreach( Target t in targets )
+                foreach (Target t in targets)
                 {
                     if (!t.IsFriend)
                     {
@@ -156,7 +172,6 @@ namespace SkynetTDS.Controller
                                 if (shouldRun)
                                 {
                                     launcher.Fire(1);
-                                    numberOfMissiles--;
                                 }
                                 else
                                 {
@@ -182,11 +197,12 @@ namespace SkynetTDS.Controller
         #region events
         private void launcherFired(object sender, EventArgs e)
         {
+            numberOfMissiles--;
             onMissileFired(e);
         }
 
         public event EventHandler MissileFired;
-        private void onMissileFired( EventArgs e )
+        private void onMissileFired(EventArgs e)
         {
             EventHandler missileFired = MissileFired;
             if (missileFired != null)
